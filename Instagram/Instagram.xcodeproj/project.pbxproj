@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		40ADD05B5674F339E7A8560E /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E99BCC5275D4093BE8F495 /* Pods_Instagram.framework */; };
 		501895051DD9C6AA008C95DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501895041DD9C6AA008C95DB /* AppDelegate.swift */; };
-		501895071DD9C6AA008C95DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501895061DD9C6AA008C95DB /* ViewController.swift */; };
 		5018950A1DD9C6AA008C95DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 501895081DD9C6AA008C95DB /* Main.storyboard */; };
 		5018950C1DD9C6AB008C95DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5018950B1DD9C6AB008C95DB /* Assets.xcassets */; };
 		5018950F1DD9C6AB008C95DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5018950D1DD9C6AB008C95DB /* LaunchScreen.storyboard */; };
 		501895171DD9C7BB008C95DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 501895161DD9C7BB008C95DB /* GoogleService-Info.plist */; };
+		501895191DDA94CA008C95DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501895181DDA94CA008C95DB /* LoginViewController.swift */; };
+		5018951F1DDA9595008C95DB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5018951E1DDA9595008C95DB /* SignUpViewController.swift */; };
+		501895211DDAA509008C95DB /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501895201DDAA509008C95DB /* TimeLineViewController.swift */; };
+		501895231DDAAF49008C95DB /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501895221DDAAF49008C95DB /* TimelineTableViewCell.swift */; };
+		50DFB9801DDAB792009C4175 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DFB97F1DDAB792009C4175 /* CommentViewController.swift */; };
+		50DFB9821DDAC96D009C4175 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DFB9811DDAC96D009C4175 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,12 +26,17 @@
 		3DA0685335794E18735A08F6 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		501895011DD9C6AA008C95DB /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		501895041DD9C6AA008C95DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		501895061DD9C6AA008C95DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		501895091DD9C6AA008C95DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5018950B1DD9C6AB008C95DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5018950E1DD9C6AB008C95DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		501895101DD9C6AB008C95DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		501895161DD9C7BB008C95DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		501895181DDA94CA008C95DB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5018951E1DDA9595008C95DB /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		501895201DDAA509008C95DB /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		501895221DDAAF49008C95DB /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
+		50DFB97F1DDAB792009C4175 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		50DFB9811DDAC96D009C4175 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		753770BA11A488BE9C51CAD2 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,8 +73,10 @@
 		501895031DD9C6AA008C95DB /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				5018951D1DDA9521008C95DB /* Model */,
+				5018951C1DDA9518008C95DB /* View */,
+				5018951B1DDA9501008C95DB /* Controller */,
 				501895041DD9C6AA008C95DB /* AppDelegate.swift */,
-				501895061DD9C6AA008C95DB /* ViewController.swift */,
 				501895081DD9C6AA008C95DB /* Main.storyboard */,
 				5018950B1DD9C6AB008C95DB /* Assets.xcassets */,
 				5018950D1DD9C6AB008C95DB /* LaunchScreen.storyboard */,
@@ -72,6 +84,33 @@
 				501895101DD9C6AB008C95DB /* Info.plist */,
 			);
 			path = Instagram;
+			sourceTree = "<group>";
+		};
+		5018951B1DDA9501008C95DB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				501895181DDA94CA008C95DB /* LoginViewController.swift */,
+				5018951E1DDA9595008C95DB /* SignUpViewController.swift */,
+				501895201DDAA509008C95DB /* TimeLineViewController.swift */,
+				50DFB97F1DDAB792009C4175 /* CommentViewController.swift */,
+				50DFB9811DDAC96D009C4175 /* SearchViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		5018951C1DDA9518008C95DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				501895221DDAAF49008C95DB /* TimelineTableViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		5018951D1DDA9521008C95DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		AEE635B5827AFBD7DCBDF571 /* Frameworks */ = {
@@ -215,7 +254,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				501895071DD9C6AA008C95DB /* ViewController.swift in Sources */,
+				501895231DDAAF49008C95DB /* TimelineTableViewCell.swift in Sources */,
+				50DFB9821DDAC96D009C4175 /* SearchViewController.swift in Sources */,
+				5018951F1DDA9595008C95DB /* SignUpViewController.swift in Sources */,
+				50DFB9801DDAB792009C4175 /* CommentViewController.swift in Sources */,
+				501895211DDAA509008C95DB /* TimeLineViewController.swift in Sources */,
+				501895191DDA94CA008C95DB /* LoginViewController.swift in Sources */,
 				501895051DD9C6AA008C95DB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

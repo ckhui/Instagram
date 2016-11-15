@@ -6,6 +6,8 @@ target 'Instagram' do
   use_frameworks!
 
   # Pods for Instagram
-pod “Firebase/Core”
-
+  pod 'Firebase/Core' #Default Firebase functionality
+  pod 'Firebase/Database' #Real time database
+  pod 'Firebase/Auth'     #Firebase Authentication
+  pod 'Firebase/Storage'  #Firebase Storage
 end

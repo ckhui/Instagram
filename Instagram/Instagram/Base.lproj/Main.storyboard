@@ -47,9 +47,6 @@
                                         <state key="normal" title="Log In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="X9v-TP-one" kind="show" id="yqN-r7-JO2"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXx-3O-uuE">
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
@@ -78,7 +75,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="iAo-6c-hz4"/>
                     <connections>
-                        <segue destination="X9v-TP-one" kind="show" id="Btk-1s-BM0"/>
+                        <outlet property="loginButton" destination="78A-zW-lmp" id="hwF-2O-weg"/>
+                        <outlet property="passwordTextField" destination="JBV-Hs-wJ9" id="qeG-lM-4s3"/>
+                        <outlet property="signupButton" destination="aWU-Tn-1dP" id="67e-53-fxm"/>
+                        <outlet property="usernameTextField" destination="8xU-43-eOY" id="7vq-4g-IQg"/>
+                        <segue destination="X9v-TP-one" kind="show" identifier="toSignUpPage" id="Btk-1s-BM0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYW-u3-yuo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -290,10 +291,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="99" id="19j-iX-qdW" customClass="CommentTableViewCell" customModule="Instagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="99"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="19j-iX-qdW" id="5qN-90-p32">
-                                            <frame key="frameInset" width="343" height="98"/>
+                                            <frame key="frameInset" width="1000" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qi9-sf-wd5">
@@ -412,9 +413,6 @@
                                                 <state key="normal" title="Sign Up">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <segue destination="cW1-BM-eQi" kind="show" id="5wX-lE-DTk"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -436,6 +434,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="bB6-qy-6ar" secondAttribute="trailing" id="tsH-oI-MJf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cancleButton" destination="HdO-T7-99X" id="gGE-d6-I45"/>
+                        <outlet property="createButton" destination="qdW-aN-9jj" id="kk2-nr-SyQ"/>
+                        <outlet property="emailTextField" destination="umg-rU-Tjk" id="wYb-he-h24"/>
+                        <outlet property="passwordTextField" destination="jWA-d1-l27" id="SMh-2N-H91"/>
+                        <outlet property="profileImagePreview" destination="Pay-3S-MJ6" id="lpy-g6-uWH"/>
+                        <outlet property="usernameTextField" destination="mAF-De-ilY" id="7Dn-cH-Uig"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYj-t0-5qj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -547,6 +553,17 @@
                     <view key="view" contentMode="scaleToFill" id="Ozc-by-JUN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIB-Ft-pvB">
+                                <frame key="frameInset" minX="106" minY="298" width="163" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="49"/>
+                                <state key="normal" title="Log out"/>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="8pd-u6-ffx" eventType="touchUpInside" id="JF9-h7-aeP"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="iP5-m5-MJQ"/>
@@ -773,10 +790,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="notificationCell" rowHeight="113" id="m1v-Jw-sIp" customClass="NotifcationTableViewCell" customModule="Instagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="113"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="113"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1v-Jw-sIp" id="z4h-uK-2Ta">
-                                            <frame key="frameInset" width="375" height="112"/>
+                                            <frame key="frameInset" width="1000" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="COK-lK-QbB">
@@ -817,10 +834,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="followingCell" rowHeight="240" id="IpY-om-Bl9" customClass="FollowingTableViewCell" customModule="Instagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="141" width="375" height="240"/>
+                                        <rect key="frame" x="0.0" y="141" width="1000" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IpY-om-Bl9" id="wBq-8F-UOa">
-                                            <frame key="frameInset" width="375" height="239"/>
+                                            <frame key="frameInset" width="1000" height="239"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YA4-T1-4me">
@@ -926,7 +943,4 @@
         <image name="heart" width="25" height="25"/>
         <image name="share" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Btk-1s-BM0"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FIRApp.configure ()
+        observeNotification()
         return true
     }
 
@@ -62,7 +65,7 @@ extension AppDelegate
         //this will only be called if user successfully login
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
-        let tabBarController = storyBoard.instantiateViewController(withIdentifier: "InstagramTabBarController")
+        let tabBarController = storyBoard.instantiateViewController(withIdentifier: "InstaTabBarController")
         
         window?.rootViewController = tabBarController
     }

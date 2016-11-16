@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseDatabase
 import FirebaseStorage
+
 
 class Instagram {
     
@@ -103,6 +105,46 @@ class Instagram {
         let image = UIImage(named: "UProfile")!
         //uploadImage(image, of: nil)
     }
+    
+    func currentUserInfo(){
+        if let user = FIRAuth.auth()?.currentUser{
+            let name = user.displayName
+            let email = user.email
+            let photoUrl = user.photoURL
+            let uid = user.uid;  // The user's ID, unique to the Firebase project.
+            // Do NOT use this value to authenticate with
+            // your backend server, if you have one. Use
+            // getTokenWithCompletion:completion: instead.
+            print("Current User with name : \(name) email:\(email)")
+            
+            for profile in user.providerData {
+                let providerID = profile.providerID
+                let uid = profile.uid;  // Provider-specific UID
+                let name = profile.displayName
+                let email = profile.email
+                let photoURL = profile.photoURL
+            }
+            
+        } else {
+            print ("NO user logggggggggged in ")
+            // No user is signed in.
+        }
+    }
+    
+    func modifyDatabse(path: String,key: String,value: String){
+        var frDBref: FIRDatabaseReference!
+        frDBref = FIRDatabase.database().reference()
+        frDBref.child("\(path)/\(key)").setValue(value)
+    }
+    
+    func modifyDatabse(path: String,dictionary : [String : String]){
+        var frDBref: FIRDatabaseReference!
+        frDBref = FIRDatabase.database().reference()
+        frDBref.child("\(path)/").setValue(dictionary)
+    }
+    
+    
+
 }
 
 

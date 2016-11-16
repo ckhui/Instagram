@@ -77,7 +77,6 @@ extension AppDelegate
         let viewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
         
         window?.rootViewController = viewController
-        
     }
     
 }

@@ -106,7 +106,7 @@ class SignUpViewController: UIViewController {
             tempDict["name"] = username
             tempDict["picture"] = imageURL
 
-            Instagram().modifyDatabse(path: path, dictionary: tempDict)
+            Instagram().modifyDatabase(path: path, dictionary: tempDict)
             
             //testing
             print("just created user")

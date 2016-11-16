@@ -293,7 +293,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="19j-iX-qdW" id="5qN-90-p32">
-                                            <frame key="frameInset" width="343" height="99"/>
+                                            <frame key="frameInset" width="343" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qi9-sf-wd5">
@@ -559,7 +559,7 @@
         <scene sceneID="znA-Wg-loY">
             <objects>
                 <collectionViewController storyboardIdentifier="ProfileCollectionViewController" id="XXE-eb-E7j" customClass="ProfileCollectionViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="TNm-yn-VQr">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TNm-yn-VQr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -904,6 +904,7 @@
                 <tabBarController storyboardIdentifier="InstaTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="cW1-BM-eQi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Z9b-CX-vv3">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>

@@ -400,3 +400,22 @@ extension UIImageView {
     }
 }
 
+
+extension UIImageView {
+    
+    func roundShape() {
+        self.layer.cornerRadius = self.frame.height/2
+        self.clipsToBounds = true
+        self.layer.borderWidth = 1
+        self.layer.shadowOpacity = 0.7
+        self.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
+        self.layer.shadowRadius = 5
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.contentMode = .scaleAspectFill
+    }
+    
+    func centerSquare(){
+        self.clipsToBounds = true
+        self.contentMode = .scaleAspectFill
+    }
+}

@@ -22,7 +22,9 @@ class ProfileCollectionViewController: UICollectionViewController{
     var arrayOfFollowings = [String]()
     let tapGesture = UITapGestureRecognizer()
     var labelIsTapped = false
-    var userUID = Instagram().currentUserUid()//"Admin1"
+    var userUID = "Admin2"//Instagram().currentUserUid()//"Admin1"
+    
+    var profilelUid : String?
     
     var ref: FIRDatabaseReference!
     
@@ -30,6 +32,13 @@ class ProfileCollectionViewController: UICollectionViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
+        // TODO : if other user, display back button, not allow eidt profil...        
+        if let uid = profilelUid{
+            userUID = uid
+        }
+        else {
+            userUID = "Admin2"
+        }
         
         //add tap gesture to edit profile
         tapGesture.addTarget(self, action: #selector(handleTap))
@@ -155,12 +164,7 @@ class ProfileCollectionViewController: UICollectionViewController{
 //                let imgdata = NSData(contentsOf: NSURL(string: self.users.picture)! as URL)
 //                let img = UIImage(data: imgdata as! Data)
 //                cell.profilePicture.image = img
-                
-                cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.height / 2
-                cell.profilePicture.clipsToBounds = true
-                cell.profilePicture.layer.borderWidth = 1.0
-                cell.profilePicture.layer.masksToBounds = true
-                cell.profilePicture.contentMode = .scaleAspectFill
+               cell.profilePicture.roundShape()
             }
             
             return cell
@@ -173,10 +177,8 @@ class ProfileCollectionViewController: UICollectionViewController{
                 url = self.arrayOfPicturesUrl[indexPath.row - 1]
                 print("********** \(url)")
                 cell.profileImages.loadImageUsingCacheWithUrlString(url)
-//                let imgdata = NSData(contentsOf: NSURL(string: url)! as URL)
-//                let img = UIImage(data: imgdata as! Data)
-//                cell.profileImages.image = img
-                
+                cell.profileImages.centerSquare()
+            
             }
             return cell
         }

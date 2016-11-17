@@ -22,6 +22,9 @@
 		505151901DDBF5A800BA90F6 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051518B1DDBF5A800BA90F6 /* ProfileCollectionViewCell.swift */; };
 		505151911DDBF5A800BA90F6 /* ProfileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5051518C1DDBF5A800BA90F6 /* ProfileCollectionViewController.swift */; };
 		505151931DDBF66800BA90F6 /* PostPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505151921DDBF66800BA90F6 /* PostPhotoViewController.swift */; };
+		505151951DDC043100BA90F6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505151941DDC043100BA90F6 /* SearchTableViewCell.swift */; };
+		505151971DDC10F800BA90F6 /* Insta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505151961DDC10F800BA90F6 /* Insta.swift */; };
+		505151991DDD3C3100BA90F6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505151981DDD3C3100BA90F6 /* User.swift */; };
 		50DFB9801DDAB792009C4175 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DFB97F1DDAB792009C4175 /* CommentViewController.swift */; };
 		50DFB9821DDAC96D009C4175 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DFB9811DDAC96D009C4175 /* SearchViewController.swift */; };
 		50FAFB7A1DDB143E0088D04C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FAFB791DDB143E0088D04C /* CommentTableViewCell.swift */; };
@@ -49,6 +52,9 @@
 		5051518B1DDBF5A800BA90F6 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		5051518C1DDBF5A800BA90F6 /* ProfileCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewController.swift; sourceTree = "<group>"; };
 		505151921DDBF66800BA90F6 /* PostPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostPhotoViewController.swift; path = Assets.xcassets/PostPhotoViewController.swift; sourceTree = "<group>"; };
+		505151941DDC043100BA90F6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		505151961DDC10F800BA90F6 /* Insta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Insta.swift; sourceTree = "<group>"; };
+		505151981DDD3C3100BA90F6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		50DFB97F1DDAB792009C4175 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		50DFB9811DDAC96D009C4175 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		50FAFB791DDB143E0088D04C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 				505151881DDBF5A800BA90F6 /* FollowingTableViewCell.swift */,
 				505151891DDBF5A800BA90F6 /* NotifcationTableViewCell.swift */,
 				5051518B1DDBF5A800BA90F6 /* ProfileCollectionViewCell.swift */,
+				505151941DDC043100BA90F6 /* SearchTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -135,7 +142,10 @@
 		5018951D1DDA9521008C95DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				505151961DDC10F800BA90F6 /* Insta.swift */,
+				505151981DDD3C3100BA90F6 /* User.swift */,
 				A1B4FDA11DDC0F2400CEDCEE /* Instagram.swift */,
+
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -286,10 +296,13 @@
 				50DFB9821DDAC96D009C4175 /* SearchViewController.swift in Sources */,
 				5051518E1DDBF5A800BA90F6 /* NotifcationTableViewCell.swift in Sources */,
 				5018951F1DDA9595008C95DB /* SignUpViewController.swift in Sources */,
+				505151971DDC10F800BA90F6 /* Insta.swift in Sources */,
 				505151931DDBF66800BA90F6 /* PostPhotoViewController.swift in Sources */,
+				505151991DDD3C3100BA90F6 /* User.swift in Sources */,
 				50FAFB7A1DDB143E0088D04C /* CommentTableViewCell.swift in Sources */,
 				505151911DDBF5A800BA90F6 /* ProfileCollectionViewController.swift in Sources */,
 				5051518D1DDBF5A800BA90F6 /* FollowingTableViewCell.swift in Sources */,
+				505151951DDC043100BA90F6 /* SearchTableViewCell.swift in Sources */,
 				50DFB9801DDAB792009C4175 /* CommentViewController.swift in Sources */,
 				A1B7ED0E1DDC79270033D893 /* imagepickerViewController.swift in Sources */,
 				A1B4FDA21DDC0F2400CEDCEE /* Instagram.swift in Sources */,

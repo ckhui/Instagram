@@ -89,6 +89,7 @@
         <!--Item-->
         <scene sceneID="HYr-aA-T4Q">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pTb-r4-8Ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="TimeLineViewController" automaticallyAdjustsScrollViewInsets="NO" id="Eyy-0H-4aP" customClass="TimeLineViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Rs-aW-ExN"/>
@@ -205,13 +206,13 @@
                                         <connections>
                                             <outlet property="ContentImage" destination="eog-is-bPP" id="6NW-nX-Erp"/>
                                             <outlet property="ContextLabel" destination="Edo-FA-lBq" id="ULT-km-6eU"/>
-                                            <outlet property="ShareButton" destination="IHO-Nc-sVC" id="G05-0w-uyy"/>
                                             <outlet property="TimeLabel" destination="M0k-mb-BpZ" id="2ce-2B-7hA"/>
-                                            <outlet property="commentButton" destination="l3q-1D-eCO" id="39V-gR-K48"/>
+                                            <outlet property="commentButton" destination="l3q-1D-eCO" id="VzR-dn-uUF"/>
                                             <outlet property="commentLabel" destination="KEG-cV-EqJ" id="s2v-Xd-CtY"/>
-                                            <outlet property="likeButton" destination="CcA-2p-6C8" id="mDg-Ah-mv5"/>
+                                            <outlet property="likeButton" destination="CcA-2p-6C8" id="ccf-yX-pYJ"/>
                                             <outlet property="likeLabel" destination="VQS-WJ-ayo" id="XPq-ne-tPQ"/>
                                             <outlet property="profileImage" destination="YBC-Vc-vcW" id="4ed-eI-pha"/>
+                                            <outlet property="shareButton" destination="IHO-Nc-sVC" id="Ma6-LZ-O6q"/>
                                             <outlet property="usenameLabel" destination="LKX-Pg-ZS8" id="OQR-VY-ujf"/>
                                         </connections>
                                     </tableViewCell>
@@ -233,7 +234,6 @@
                         <segue destination="El6-4G-hDv" kind="show" identifier="commentSegue" id="qrf-vH-mZ3"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pTb-r4-8Ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1370" y="-157"/>
         </scene>
@@ -467,7 +467,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kiZ-63-Hhs">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchTableViewCell" rowHeight="98" id="BOX-g7-gAo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchTableViewCell" rowHeight="98" id="BOX-g7-gAo" customClass="SearchTableViewCell" customModule="Instagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BOX-g7-gAo" id="Sut-jJ-HDO">

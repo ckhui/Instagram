@@ -28,25 +28,26 @@ class CommentViewController: UIViewController {
         
      // let size = profilePicture.frame.width
         
-        profilePicture.layer.cornerRadius = 72/2
-        profilePicture.clipsToBounds = true
-        profilePicture.layer.borderWidth = 2
-        profilePicture.layer.borderColor = UIColor.black.cgColor
-        profilePicture.layer.shadowOpacity = 0.7
-        profilePicture.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
-        profilePicture.layer.shadowRadius = 5
-        profilePicture.layer.shadowColor = UIColor.black.cgColor
-        
-    
-        
+       
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        circularImage(image: profilePicture)
     }
     
+  
+    func circularImage(image : UIImageView) {
+        image.layer.cornerRadius = profilePicture.frame.height/2
+        image.clipsToBounds = true
+        image.layer.borderWidth = 1
+        image.layer.borderColor = UIColor.black.cgColor
+        image.layer.shadowOpacity = 0.7
+        image.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
+        image.layer.shadowRadius = 5
+        image.layer.shadowColor = UIColor.black.cgColor
+    }
+
     
 }
 
@@ -65,6 +66,7 @@ extension CommentViewController : UITableViewDataSource {
         cell.commentLabel.text = "My pokemon is cute than your"
         cell.timeLabel.text = "9mins ago"
         cell.profileImage.image = #imageLiteral(resourceName: "jigglypuff")
+        circularImage(image: cell.profileImage)
         
         return cell
     }

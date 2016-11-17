@@ -72,3 +72,15 @@ extension SearchViewController: UITableViewDelegate {
 
 /*-------------------------------------------------------*/
 //TableView DataSource
+extension SearchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell : SearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "searchTableViewCell", for: indexPath) as? SearchTableViewCell else {
+            return UITableViewCell()
+        }
+      return cell
+    }
+}

@@ -84,8 +84,22 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
         })
     }
 
-   
+    func fetchName() {
+        frDBref.child("user").observe(.childAdded, with: {(snapshot) in
+             let newUser = User()
+            guard let NameDictionary = snapshot.value  as? [String: AnyObject] else
+            {
+                return
+            }
+            
+            newUser.name = NameDictionary["name"] as? String
+        })
+    }
+
 }
+
+
+
 
 /*-------------Timeline Table Cell Delegate ---------*/
 extension TimeLineViewController: TimelineTableViewCellDelegate {

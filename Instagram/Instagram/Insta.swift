@@ -9,8 +9,6 @@
 import Foundation
 
 class Insta {
-    var profilePictureURL : String? = nil
-    var userName : String? = nil
     var postImageURL : String? = nil
     var postDetail : String? = nil
     var postTime : String? = nil

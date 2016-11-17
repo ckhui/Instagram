@@ -1,8 +1,8 @@
-//
-//  File.swift
+
+//  User.swift
 //  Instagram
 //
-//  Created by NEXTAcademy on 11/16/16.
+//
 //  Copyright © 2016 Wherevership. All rights reserved.
 //
 
@@ -15,4 +15,5 @@ public class User{
     var desc: String = ""
     var picture: String = ""
     var posted : [String : String] = [:]
+
 }

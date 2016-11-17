@@ -8,6 +8,10 @@
 
 import UIKit
 import Firebase
+<<<<<<< HEAD
+=======
+import FirebaseAuth
+>>>>>>> f677ca72a587afa7958f53978bffa055377f7afc
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         
         // Override point for customization after application launch.
+        FIRApp.configure ()
+        observeNotification()
         return true
     }
 
@@ -46,5 +52,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate
+{
+    func observeNotification ()
+    {
+        NotificationCenter.default.addObserver(self, selector:#selector(handleUserLoginNotification(_:)), name: Notification.Name(rawValue: "AuthSuccessNotification"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(handleUserLoginNotification(_:)), name: Notification.Name(rawValue: "ExistLoggedInUserNotification"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(handleUserLogoutNotification(_:)), name: Notification.Name(rawValue: "UserLogoutNotification"), object: nil)
+    }
+    
+    func handleUserLoginNotification (_ notification: Notification)
+    {
+        //this will only be called if user successfully login
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        let tabBarController = storyBoard.instantiateViewController(withIdentifier: "InstaTabBarController")
+        
+        window?.rootViewController = tabBarController
+    }
+    
+    func handleUserLogoutNotification(_ notification: Notification){
+        //this will call when user logout successfully
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        let viewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
+        
+        window?.rootViewController = viewController
+    }
+    
 }
 

@@ -13,23 +13,54 @@ class TimelineTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var ContextLabel: UILabel!
     @IBOutlet weak var TimeLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
-    
-    @IBOutlet weak var commentButton: UIButton!
-    
-    @IBOutlet weak var ShareButton: UIButton!
+  
     @IBOutlet weak var commentLabel: UILabel!
     
     @IBOutlet weak var profileImage: UIImageView!
    
     @IBOutlet weak var usenameLabel: UILabel!
     
+    // Declare TimelineTableView Cell Delegate
     var delegate: TimelineTableViewCellDelegate?
     
+    
+/*-------------------like Button--------------*/
+    @IBOutlet weak var likeButton: UIButton! {
+        didSet {
+            likeButton.addTarget(self, action: #selector(onLikeButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    func onLikeButtonPressed(button: UIButton) {
+        
+    }
+/*------------------Comment Button-------------*/
+    @IBOutlet weak var commentButton: UIButton! {
+        didSet {
+            commentButton.addTarget(self, action: #selector(onCommentButtonPressed), for: .touchUpInside)
+        }
+        
+    }
+    
+    func onCommentButtonPressed(button: UIButton) {
+        
+    }
+/*--------------Share Button-------------------*/
+    
+    @IBOutlet weak var shareButton: UIButton! {
+        didSet {
+            shareButton.addTarget(self, action: #selector(onShareButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    func onShareButtonPressed(button: UIButton) {
+        
+    }
+/*---------------------------------------------*/
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        //commentLabel.isEnabled = true
+        
+       
         commentLabel.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target:self,action:#selector(self.onCommentLabelPressed(sender:)))
         commentLabel.addGestureRecognizer(tap)
@@ -48,6 +79,7 @@ class TimelineTableViewCell: UITableViewCell {
 
 }
 
+//TimelineTableView Cell Delegate
 protocol TimelineTableViewCellDelegate {
     func sendInfoToCommentSegue()
 }

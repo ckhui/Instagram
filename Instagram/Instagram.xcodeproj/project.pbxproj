@@ -31,6 +31,7 @@
 		A1B4FDA21DDC0F2400CEDCEE /* Instagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4FDA11DDC0F2400CEDCEE /* Instagram.swift */; };
 		A1B7ED0C1DDC4DD20033D893 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1B7ED0B1DDC4DD10033D893 /* GoogleService-Info.plist */; };
 		A1B7ED0E1DDC79270033D893 /* imagepickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B7ED0D1DDC79270033D893 /* imagepickerViewController.swift */; };
+		A1DFB2041DDDA5050027E435 /* GridLayoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFB2031DDDA5050027E435 /* GridLayoutCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		A1B4FDA11DDC0F2400CEDCEE /* Instagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instagram.swift; sourceTree = "<group>"; };
 		A1B7ED0B1DDC4DD10033D893 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1B7ED0D1DDC79270033D893 /* imagepickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imagepickerViewController.swift; sourceTree = "<group>"; };
+		A1DFB2031DDDA5050027E435 /* GridLayoutCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayoutCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				505151891DDBF5A800BA90F6 /* NotifcationTableViewCell.swift */,
 				5051518B1DDBF5A800BA90F6 /* ProfileCollectionViewCell.swift */,
 				505151941DDC043100BA90F6 /* SearchTableViewCell.swift */,
+				A1DFB2031DDDA5050027E435 /* GridLayoutCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -145,7 +148,6 @@
 				505151961DDC10F800BA90F6 /* Insta.swift */,
 				505151981DDD3C3100BA90F6 /* User.swift */,
 				A1B4FDA11DDC0F2400CEDCEE /* Instagram.swift */,
-
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -291,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DFB2041DDDA5050027E435 /* GridLayoutCollectionViewCell.swift in Sources */,
 				501895231DDAAF49008C95DB /* TimelineTableViewCell.swift in Sources */,
 				5051518F1DDBF5A800BA90F6 /* NotificationViewController.swift in Sources */,
 				50DFB9821DDAC96D009C4175 /* SearchViewController.swift in Sources */,

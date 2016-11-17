@@ -9,7 +9,11 @@
 import Foundation
 
 class User {
-    var name : String? = nil
-    var picture : String? = nil
+    
+    var name: String? = ""
+    var desc: String? = ""
+    var picture: String = ""
+    var posted : [String : String] = [:]
+    
 
 }

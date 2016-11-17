@@ -16,5 +16,5 @@ class ProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var numberOfFollowers: UILabel!
     @IBOutlet weak var numberOfFollowing: UILabel!
     @IBOutlet weak var editProfileOnLabelPressed: UILabel!
-    
+    @IBOutlet weak var viewContainingButtons: UIView!
 }

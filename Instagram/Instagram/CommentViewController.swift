@@ -17,14 +17,22 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var MessageLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var messageTimeLabel: UILabel!
+    var insta : Insta?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         commentTableView.delegate = self
         commentTableView.dataSource = self
-        self.title = "Huan Huan"
+        
+        
+        self.title = insta?.username
         messageTimeLabel.text = "13mins ago"
-        profilePicture.image = UIImage(named: "pichu")
-        MessageLabel.text = "This Pichu so cute, I make it as profile picture, love it! love it! love it! love it! love it! love it! love it!"
+        
+        let data = NSData(contentsOf: NSURL(string: (insta?.profilePictureURL)!)! as URL)
+        profilePicture.image = UIImage(data: data as! Data)
+        
+        MessageLabel.text = insta?.postDetail
+        
         
      // let size = profilePicture.frame.width
         

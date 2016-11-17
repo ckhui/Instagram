@@ -84,6 +84,7 @@ class SignUpViewController: UIViewController,imagepickerViewControllerDelegate {
             var tempDict = [String : String]()
             tempDict["name"] = username
             tempDict["picture"] = ""
+            tempDict["desc"] = ""
             Instagram().modifyDatabase(path: path, dictionary: tempDict)
             
             

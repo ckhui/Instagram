@@ -95,7 +95,7 @@ class SignUpViewController: UIViewController,imagepickerViewControllerDelegate {
             //update user info (optional)
             let changeRequest = currentUser.profileChangeRequest()
             changeRequest.displayName = username
-            changeRequest.photoURL = URL(string: url)
+            changeRequest.photoURL = URL(string: "")
             changeRequest.commitChanges(completion: { error in
                 if let error = error {
                     // An error happened.

@@ -103,7 +103,7 @@ class Instagram {
                 
                 switch type{
                 case .postInsta :
-                    let path = "User/\(userUid)"
+                    let path = "User/\(userUid)/posted"
                     self.modifyDatabase(path: path, key: fileName, value: downloadURL!)
                     let path2 = "ImagePost/\(fileName)"
                     self.modifyDatabase(path: path2, key: "url", value: downloadURL!)

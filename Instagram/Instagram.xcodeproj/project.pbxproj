@@ -26,6 +26,9 @@
 		50DFB9801DDAB792009C4175 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DFB97F1DDAB792009C4175 /* CommentViewController.swift */; };
 		50DFB9821DDAC96D009C4175 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DFB9811DDAC96D009C4175 /* SearchViewController.swift */; };
 		50FAFB7A1DDB143E0088D04C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FAFB791DDB143E0088D04C /* CommentTableViewCell.swift */; };
+		A1C5D4561DDC3CB00035A7FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C5D4551DDC3CB00035A7FB /* User.swift */; };
+		A1D8E5061DDC0CA30028BB56 /* GridLayoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8E5051DDC0CA30028BB56 /* GridLayoutCollectionViewCell.swift */; };
+		A1DFB2021DDD44AA0027E435 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFB2011DDD44AA0027E435 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		50DFB9811DDAC96D009C4175 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		50FAFB791DDB143E0088D04C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		753770BA11A488BE9C51CAD2 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
+		A1C5D4551DDC3CB00035A7FB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A1D8E5051DDC0CA30028BB56 /* GridLayoutCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayoutCollectionViewCell.swift; sourceTree = "<group>"; };
+		A1DFB2011DDD44AA0027E435 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,7 @@
 		501895031DD9C6AA008C95DB /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				A1DFB2001DDD44990027E435 /* Helpers */,
 				5018951D1DDA9521008C95DB /* Model */,
 				5018951C1DDA9518008C95DB /* View */,
 				5018951B1DDA9501008C95DB /* Controller */,
@@ -123,6 +130,7 @@
 				505151881DDBF5A800BA90F6 /* FollowingTableViewCell.swift */,
 				505151891DDBF5A800BA90F6 /* NotifcationTableViewCell.swift */,
 				5051518B1DDBF5A800BA90F6 /* ProfileCollectionViewCell.swift */,
+				A1D8E5051DDC0CA30028BB56 /* GridLayoutCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -130,8 +138,17 @@
 		5018951D1DDA9521008C95DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A1C5D4551DDC3CB00035A7FB /* User.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		A1DFB2001DDD44990027E435 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A1DFB2011DDD44AA0027E435 /* Extension.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		AEE635B5827AFBD7DCBDF571 /* Frameworks */ = {
@@ -275,14 +292,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D8E5061DDC0CA30028BB56 /* GridLayoutCollectionViewCell.swift in Sources */,
 				501895231DDAAF49008C95DB /* TimelineTableViewCell.swift in Sources */,
 				5051518F1DDBF5A800BA90F6 /* NotificationViewController.swift in Sources */,
 				50DFB9821DDAC96D009C4175 /* SearchViewController.swift in Sources */,
 				5051518E1DDBF5A800BA90F6 /* NotifcationTableViewCell.swift in Sources */,
+				A1C5D4561DDC3CB00035A7FB /* User.swift in Sources */,
 				5018951F1DDA9595008C95DB /* SignUpViewController.swift in Sources */,
 				505151931DDBF66800BA90F6 /* PostPhotoViewController.swift in Sources */,
 				50FAFB7A1DDB143E0088D04C /* CommentTableViewCell.swift in Sources */,
 				505151911DDBF5A800BA90F6 /* ProfileCollectionViewController.swift in Sources */,
+				A1DFB2021DDD44AA0027E435 /* Extension.swift in Sources */,
 				5051518D1DDBF5A800BA90F6 /* FollowingTableViewCell.swift in Sources */,
 				50DFB9801DDAB792009C4175 /* CommentViewController.swift in Sources */,
 				501895211DDAA509008C95DB /* TimeLineViewController.swift in Sources */,

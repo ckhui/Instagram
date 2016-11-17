@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="MIy-fo-PHo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="XXE-eb-E7j">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -293,7 +293,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="19j-iX-qdW" id="5qN-90-p32">
-                                            <frame key="frameInset" width="343" height="99"/>
+                                            <frame key="frameInset" width="343" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qi9-sf-wd5">
@@ -713,15 +713,32 @@
                                     <outlet property="profileDescription" destination="4nx-Mo-20n" id="A6m-1g-bkJ"/>
                                     <outlet property="profileFullName" destination="kFG-HD-nHK" id="hTS-Id-Umv"/>
                                     <outlet property="profilePicture" destination="ch2-xx-Vev" id="Gpb-C1-4GP"/>
+                                    <outlet property="viewContainingButtons" destination="tGm-Qh-Fur" id="I4F-YT-YYw"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pictureCell" id="eYO-9J-ffH">
-                                <rect key="frame" x="0.0" y="273" width="375" height="263"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pictureCell" id="eYO-9J-ffH" customClass="GridLayoutCollectionViewCell" customModule="Instagram" customModuleProvider="target">
+                                <rect key="frame" x="128" y="273" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="263"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TZ4-Ga-AKC">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="120" id="7M2-l5-T7Z"/>
+                                                <constraint firstAttribute="width" constant="120" id="SVK-jI-odU"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="TZ4-Ga-AKC" firstAttribute="centerX" secondItem="eYO-9J-ffH" secondAttribute="centerX" id="AwP-i4-C2U"/>
+                                    <constraint firstItem="TZ4-Ga-AKC" firstAttribute="centerY" secondItem="eYO-9J-ffH" secondAttribute="centerY" id="wg5-vk-Mqz"/>
+                                </constraints>
+                                <size key="customSize" width="120" height="120"/>
+                                <connections>
+                                    <outlet property="profileImages" destination="TZ4-Ga-AKC" id="kOD-YQ-O5E"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -733,7 +750,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9tF-qz-zs9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4410" y="-158"/>
+            <point key="canvasLocation" x="4408.8000000000002" y="-158.77061469265368"/>
         </scene>
         <!--Item-->
         <scene sceneID="uBF-V1-Zr9">
@@ -904,6 +921,7 @@
                 <tabBarController storyboardIdentifier="InstaTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="cW1-BM-eQi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Z9b-CX-vv3">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>

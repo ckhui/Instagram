@@ -63,15 +63,14 @@ class Instagram {
         case postInsta
     }
     
-    func uploadImageToStorageAndGetUrl(type : uploadImageType, image : UIImage,fileName : String?) -> String{
-        let str = ""
+    func uploadImageToStorageAndGetUrl(type : uploadImageType, image : UIImage,fileName : String) {
         //get image data and metadata
         //create image path
         //sava image , return url
         
         guard let imageData = UIImageJPEGRepresentation(image, 0.5) else {
             UIViewController().warningPopUp(withTitle: "Image Type Error", withMessage: "Image Type Error")
-            return str
+            return
         }
         
         let newMetadata = FIRStorageMetadata()
@@ -87,30 +86,36 @@ class Instagram {
             break
         }
     
-        var downloadURL : String?
-        
         //upload image
         let frStorage = FIRStorage.storage().reference()
         frStorage.child(path).put(imageData, metadata: newMetadata, completion: {
             (storageMeta, error) in
             if let uploadError = error
             {
-                print (uploadError)
-                
+                UIViewController().warningPopUp(withTitle: "Upload Photo Error", withMessage: "\(uploadError)")
+
                 //this is to debug only
                 assertionFailure("Failed to upload")    // dont do this on production
             }
             else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-                downloadURL = storageMeta!.downloadURL()?.absoluteString
+                let downloadURL = storageMeta!.downloadURL()?.absoluteString
+                let userUid = self.currentUserUid()
+                
+                switch type{
+                case .postInsta :
+                    let path = "User/\(userUid)"
+                    self.modifyDatabase(path: path, key: fileName, value: downloadURL!)
+                    let path2 = "ImagePost/\(fileName)"
+                    self.modifyDatabase(path: path2, key: "url", value: downloadURL!)
+                    break
+                    
+                case .profilePicture :
+                    let path = "User/\(fileName)"
+                    self.modifyDatabase(path: path, key: "picture", value: downloadURL!)
+                    break
+                }
             }
         })
-        
-        guard let url = downloadURL
-        else {
-            return ""
-        }
-        return url
         
     }
     
@@ -193,10 +198,10 @@ class Instagram {
         return dict
     }
     
-    func preparePostInstaDictionary(desc : String = "" , imageUrl : String) -> [String : String]{
+    func preparePostInstaDictionary(desc : String = "") -> [String : String]{
         var dict = [String : String]()
         dict["desc"] = desc
-        dict["url"] = imageUrl
+        dict["url"] = ""
         dict["poster"] = currentUserUid()
         dict["timestamp"] = String(Date().timeIntervalSince1970)
         
@@ -205,34 +210,36 @@ class Instagram {
     
     func instagramActionPostInsta(desc : String = "", image :UIImage){
         //1. get auto id in ImagePost
-        //2. upload to storage and get url
-        //3. desc, url -> dict
+
+        //3. desc, *url -> dict
         //4. upload database
         //         --post
         //         ImagePost/autoId +
         //         desc : str
-        //         url : url
+        //         url : *url
         //         poster : useruid
         //         timestamp : time
         //
-        //        User/uid/posted/autoId + url
+        //        User/uid/posted/autoId + *url
+        
+        //2. *upload to storage and get url, url will be update when upload done
         
         //1
         let ref = frDBref.child("ImagePost").childByAutoId()
         ref.setValue("temp")
         let imageUid = ref.key
-
-        //2. upload image with type postinsta and imagename = uid
-        let url = uploadImageToStorageAndGetUrl(type: .postInsta, image: image, fileName: imageUid)
         
-        //3. desc, url -> dict
-        let dict = preparePostInstaDictionary(desc: desc, imageUrl: url)
+        //3. desc -> dict
+        let dict = preparePostInstaDictionary(desc: desc)
         
         //4.
         ref.setValue(dict)
         let uid = currentUserUid()
         let path = "User/\(uid)/posted/"
-        modifyDatabase(path: path, key: imageUid, value: url)
+        modifyDatabase(path: path, key: imageUid, value: "")
+        
+        //2. upload image with type postinsta and imagename = uid
+        uploadImageToStorageAndGetUrl(type: .postInsta, image: image, fileName: imageUid)
     }
     
     

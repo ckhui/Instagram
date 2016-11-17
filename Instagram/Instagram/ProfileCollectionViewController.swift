@@ -22,7 +22,7 @@ class ProfileCollectionViewController: UICollectionViewController{
     var arrayOfFollowings = [String]()
     let tapGesture = UITapGestureRecognizer()
     var labelIsTapped = false
-    var userUID = "Admin1"
+    var userUID = Instagram().currentUserUid()//"Admin1"
     
     var ref: FIRDatabaseReference!
     
@@ -53,7 +53,10 @@ class ProfileCollectionViewController: UICollectionViewController{
                 self.users.desc = (dictionary["desc"] as! String?)!
                 self.users.name = (dictionary["name"] as! String?)!
                 self.users.picture = (dictionary["picture"] as! String?)!
-                self.users.posted = (dictionary["posted"] as! [String : String]?)!
+                if dictionary.index(forKey: "posted") != nil {
+                    self.users.posted = (dictionary["posted"] as! [String : String]?)!
+                }
+                
                 
                 let imageurlArray = self.users.posted
                 for imageurl in imageurlArray {
@@ -76,7 +79,8 @@ class ProfileCollectionViewController: UICollectionViewController{
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 print(dictionary.keys)
-                
+                self.arrayOfFollowers = []
+
                 for key in dictionary.keys {
                     self.arrayOfFollowers.append(key)
                 }
@@ -91,7 +95,8 @@ class ProfileCollectionViewController: UICollectionViewController{
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 
                 print(dictionary.keys)
-                
+                self.arrayOfFollowings = []
+
                 for key in dictionary.keys {
                     self.arrayOfFollowings.append(key)
                 }
@@ -146,10 +151,10 @@ class ProfileCollectionViewController: UICollectionViewController{
             
             //circular profile picture
             if self.users.picture != "" {
-                //cell.profilePicture.loadImageUsingCacheWithUrlString(self.users.picture)
-                let imgdata = NSData(contentsOf: NSURL(string: self.users.picture)! as URL)
-                let img = UIImage(data: imgdata as! Data)
-                cell.profilePicture.image = img
+                cell.profilePicture.loadImageUsingCacheWithUrlString(self.users.picture)
+//                let imgdata = NSData(contentsOf: NSURL(string: self.users.picture)! as URL)
+//                let img = UIImage(data: imgdata as! Data)
+//                cell.profilePicture.image = img
                 
                 cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.height / 2
                 cell.profilePicture.clipsToBounds = true
@@ -167,15 +172,16 @@ class ProfileCollectionViewController: UICollectionViewController{
             if self.arrayOfPicturesUrl.count > 0 {
                 url = self.arrayOfPicturesUrl[indexPath.row - 1]
                 print("********** \(url)")
-                //cell.profileImages.loadImageUsingCacheWithUrlString(url)
-                let imgdata = NSData(contentsOf: NSURL(string: url)! as URL)
-                let img = UIImage(data: imgdata as! Data)
-                cell.profileImages.image = img
+                cell.profileImages.loadImageUsingCacheWithUrlString(url)
+//                let imgdata = NSData(contentsOf: NSURL(string: url)! as URL)
+//                let img = UIImage(data: imgdata as! Data)
+//                cell.profileImages.image = img
                 
             }
             return cell
         }
     }
+    
     
     
     

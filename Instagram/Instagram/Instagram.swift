@@ -363,6 +363,7 @@ extension UIViewController{
     }
 }
 
+var imageCache = NSCache<AnyObject, AnyObject>()
 
 
 extension UIImageView {
@@ -370,7 +371,6 @@ extension UIImageView {
     func loadImageUsingCacheWithUrlString(_ urlString: String) {
         
         self.image = nil
-        let imageCache = NSCache<AnyObject, AnyObject>()
         
         //check cache for image first
         if let cachedImage = imageCache.object(forKey: urlString as AnyObject) as? UIImage {

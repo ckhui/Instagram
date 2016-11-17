@@ -73,15 +73,15 @@ class TimelineTableViewCell: UITableViewCell {
     }
     
     func onCommentLabelPressed(sender: UITapGestureRecognizer){
-        
-        delegate?.sendInfoToCommentSegue()
+        delegate?.timelineCellOnCommentPressed(cell: self)
     }
 
 }
 
 //TimelineTableView Cell Delegate
 protocol TimelineTableViewCellDelegate {
-    func sendInfoToCommentSegue()
+    
+    func timelineCellOnCommentPressed(cell : TimelineTableViewCell)
 }
 
 

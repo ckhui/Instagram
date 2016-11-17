@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController,imagepickerViewControllerDelegate {
     
     
     //dolinking
@@ -29,6 +29,8 @@ class SignUpViewController: UIViewController {
         createButton.addTarget(self, action: #selector(onCreateUserPressed(button:)), for: .touchUpInside)    }}
     
     @IBOutlet weak var profileImagePreview: UIImageView!
+    
+    var fullProfilImage : UIImage?
     //link
     var frDBref: FIRDatabaseReference!
     
@@ -76,18 +78,24 @@ class SignUpViewController: UIViewController {
                 return
             }
             
-            //update user info
+            //creat account
+            let path = "User/\(currentUser.uid)"
+            
+            var tempDict = [String : String]()
+            tempDict["name"] = username
+            tempDict["picture"] = ""
+            Instagram().modifyDatabase(path: path, dictionary: tempDict)
+            
+            
+            //upload profilePic to storage (if image exist)
+            if let fullImg = self.fullProfilImage{
+                Instagram().uploadImageToStorageAndGetUrl(type: .profilePicture, image: fullImg, fileName: currentUser.uid)
+            }
+            
+            //update user info (optional)
             let changeRequest = currentUser.profileChangeRequest()
-            
             changeRequest.displayName = username
-            
-            //TODO : update image and get url
-            let imageURL = "https://firebasestorage.googleapis.com/v0/b/instagram-1eebe.appspot.com/o/ProfilePicture%2Fadmin2.jpg?alt=media&token=521b91d2-d5e3-4120-a9ab-b47ab07f7903"
-            
-            
-            changeRequest.photoURL =
-                URL(string: "https://firebasestorage.googleapis.com/v0/b/instagram-1eebe.appspot.com/o/ProfilePicture%2Fadmin2.jpg?alt=media&token=521b91d2-d5e3-4120-a9ab-b47ab07f7903")
-            
+            changeRequest.photoURL = URL(string: url)
             changeRequest.commitChanges(completion: { error in
                 if let error = error {
                     // An error happened.
@@ -97,16 +105,8 @@ class SignUpViewController: UIViewController {
                 }
             })
             
+            
             self.creatAccountSuccessfulPopUp(userName: self.usernameTextField.text, email: email)
-            
-            
-            let path = "User/\(currentUser.uid)"
-            
-            var tempDict = [String : String]()
-            tempDict["name"] = username
-            tempDict["picture"] = imageURL
-
-            Instagram().modifyDatabase(path: path, dictionary: tempDict)
             
             //testing
             print("just created user")
@@ -116,6 +116,8 @@ class SignUpViewController: UIViewController {
             //avoid logged in directly after account successfully created
             try! FIRAuth.auth()!.signOut()
             Instagram().currentUserInfo()
+            
+            //TODO: Done creat user go to login page and fill the email 
             
         }
         
@@ -137,18 +139,34 @@ class SignUpViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func onChoosePhotoButtonPressed(button: UIButton) {
+//        let vc = imagepickerViewController()
+//        vc.delegate = self
+//        present(vc, animated: true, completion: nil)
+        
+        performSegue(withIdentifier: "signInToSelectPhoto", sender: self)
+    }
+    
+    //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "signInToSelectPhoto" {
-            //let vc : imagepickerViewController = segue.destination as! imagepickerViewController
-            //vc.currentImage = profileImagePreview.image!
-            //vc.delegate = self
+            let vc : imagepickerViewController = segue.destination as! imagepickerViewController
+            if let pic = profileImagePreview.image
+            {
+                vc.currentImage = pic
+            }
+            vc.delegate = self
             
         }
         return
     }
     
-    func onChoosePhotoButtonPressed(button: UIButton) {
-        
-        performSegue(withIdentifier: "signInToSelectPhoto", sender: self)
+    //MARK: ImagepickerDelegate
+    func imagepickerVCDidSelectPicture(selectedImage: UIImage) {
+        fullProfilImage = selectedImage
+        profileImagePreview.image = selectedImage
     }
+
 }
+
+

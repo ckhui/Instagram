@@ -90,7 +90,7 @@ class SignUpViewController: UIViewController,imagepickerViewControllerDelegate {
             
             //upload profilePic to storage (if image exist)
             if let fullImg = self.fullProfilImage{
-                Instagram().uploadImageToStorageAndGetUrl(type: .profilePicture, image: fullImg, fileName: currentUser.uid)
+                Instagram().uploadImageToStorageAndUploadUrl(type: .profilePicture, image: fullImg, fileName: currentUser.uid)
             }
             
             //update user info (optional)

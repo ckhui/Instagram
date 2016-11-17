@@ -63,7 +63,7 @@ class Instagram {
         case postInsta
     }
     
-    func uploadImageToStorageAndGetUrl(type : uploadImageType, image : UIImage,fileName : String) {
+    func uploadImageToStorageAndUploadUrl(type : uploadImageType, image : UIImage,fileName : String) {
         //get image data and metadata
         //create image path
         //sava image , return url
@@ -103,7 +103,7 @@ class Instagram {
                 
                 switch type{
                 case .postInsta :
-                    let path = "User/\(userUid)"
+                    let path = "User/\(userUid)/posted"
                     self.modifyDatabase(path: path, key: fileName, value: downloadURL!)
                     let path2 = "ImagePost/\(fileName)"
                     self.modifyDatabase(path: path2, key: "url", value: downloadURL!)
@@ -198,7 +198,7 @@ class Instagram {
         return dict
     }
     
-    func preparePostInstaDictionary(desc : String = "") -> [String : String]{
+    private func preparePostInstaDictionary(desc : String = "") -> [String : String]{
         var dict = [String : String]()
         dict["desc"] = desc
         dict["url"] = ""
@@ -239,7 +239,7 @@ class Instagram {
         modifyDatabase(path: path, key: imageUid, value: "")
         
         //2. upload image with type postinsta and imagename = uid
-        uploadImageToStorageAndGetUrl(type: .postInsta, image: image, fileName: imageUid)
+        uploadImageToStorageAndUploadUrl(type: .postInsta, image: image, fileName: imageUid)
     }
     
     

@@ -35,17 +35,72 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
         frDBref = FIRDatabase.database().reference()
         likeDBref = FIRDatabase.database().reference()
         
-        fetchInsta()
-        
         // table view UI setting
-        timelineTableView.tableFooterView = UIView()
+        //*//timelineTableView.tableFooterView = UIView()
         timelineTableView.rowHeight = UITableViewAutomaticDimension
         timelineTableView.estimatedRowHeight = 99.0
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchInsta()
+    }
     
+    /*----------------- Fetch the data --------------------*/
+    func fetchInsta() {
+        
+        frDBref.child("ImagePost").observe(.childAdded, with: {(snapshot) in
+            let newInsta = Insta()
+            guard let imageUid = snapshot.key as? String
+                else { return }
+            
+            guard let instraDictionary = snapshot.value as? [String : AnyObject]
+                else { return }
+            
+            let posterID = instraDictionary["poster"] as? String
+            let postImageURL = instraDictionary["url"] as? String
+            let postDetail = instraDictionary["desc"] as? String
+            // TODO : save liker name
+            if instraDictionary.index(forKey: "likeby") != nil {
+                let postlike = instraDictionary["likeby"] as? [String:String]
+                newInsta.like = (postlike?.count)!
+            }
+            
+            //newInsta.postTime = instraDictionary["timestamp"] as? String
+            
+            self.frDBref.child("User").child(posterID!).observe(.childAdded, with: { (userSnapshot) in
+                guard let userDictionary = userSnapshot.value as? [String:AnyObject]
+                    else { return }
+                
+                newInsta.imageUid = imageUid
+                newInsta.posterID = posterID
+                newInsta.postImageURL = postImageURL
+                newInsta.postDetail = postDetail
+                //newInsta.postTime = blabla
+                newInsta.username = userDictionary["name"] as! String?
+                
+                
+                newInsta.profilePictureURL = userDictionary["picture"] as! String?
+                
+                self.instras.append(newInsta)
+                self.timelineTableView.reloadData()
+                
+            })
+        })
+    }
     
+//    func fetchName() {
+//        frDBref.child("User").observe(.childAdded, with: {(snapshot) in
+//            let newUser = User()
+//            guard let NameDictionary = snapshot.value  as? [String: AnyObject] else { return }
+//            
+//            newUser.name = NameDictionary["name"] as? String
+//            print(newUser.name)
+//        })
+//    }
+//    
+//}
     
     /*----------------- Prepare Segue --------------------*/
     
@@ -57,74 +112,7 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
             
         }
     }
-    
-    
-    /*----------------- Fetch the data --------------------*/
-    func fetchInsta() {
-        
-        frDBref.child("ImagePost").observe(.childAdded, with: {(snapshot) in
-            let newInsta = Insta()
-            guard let instaId = snapshot.key as? String
-                else {
-                    return
-            }
-            
-            guard let instraDictionary = snapshot.value as? [String : AnyObject]
-                else
-            {
-                return
-            }
-            
-            let imageUid = instaId
-            let posterID = instraDictionary["poster"] as? String
-            let postImageURL = instraDictionary["url"] as? String
-            let postDetail = instraDictionary["desc"] as? String
-            let postlike = instraDictionary["likeby"] as? [String:String]
-            
-            
-            //newInsta.postTime = instraDictionary["timestamp"] as? String
-            //newInsta.like = instraDictionary["likeby"] as? String
-            //  postlike?.count
-            
-            
-            
-            
-            
-            self.frDBref.child("User").child(posterID!).observe(.value, with: { (userSnapshot) in
-                guard let userDictionary = userSnapshot.value as? [String:AnyObject]
-                    else {
-                        
-                        return
-                }
-                newInsta.imageUid = imageUid
-                newInsta.posterID = posterID
-                newInsta.postImageURL = postImageURL
-                newInsta.postDetail = postDetail
-                newInsta.username = userDictionary["name"] as! String?
-                newInsta.like = (postlike?.count)!
-                newInsta.profilePictureURL = userDictionary["picture"] as! String?
-                self.instras.append(newInsta)
-                self.timelineTableView.reloadData()
-                
-            })
-        })
-    }
-    
-    func fetchName() {
-        frDBref.child("User").observe(.childAdded, with: {(snapshot) in
-            let newUser = User()
-            guard let NameDictionary = snapshot.value  as? [String: AnyObject] else
-            {
-                return
-            }
-            
-            newUser.name = NameDictionary["name"] as? String
-            print(newUser.name)
-        })
-    }
-    
 }
-
 
 
 
@@ -132,11 +120,8 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
 extension TimeLineViewController: TimelineTableViewCellDelegate {
     func timelineCellOnCommentPressed(cell: TimelineTableViewCell) {
         guard let indexPath = timelineTableView.indexPath(for: cell)
-            else{
-                return
-        }
+            else { return }
         indexToSend = indexPath.row
-        
         self.performSegue(withIdentifier: "commentSegue", sender: self)
     }
 }
@@ -156,11 +141,11 @@ extension TimeLineViewController: UITableViewDataSource {
         }
         let insta = instras[indexPath.row]
         
-        
-        print(insta.posterID)
+        //print(insta.posterID)
         timerlineCell.usenameLabel.text = insta.username
-        timerlineCell.ContextLabel.text =  insta.postDetail!
+        timerlineCell.ContextLabel.text =  insta.postDetail
         //timerlineCell.TimeLabel.text = insta.postTime
+        // TODO : get comment count
         timerlineCell.commentLabel.text = "view 13 commments"
         
         if (insta.like == 0) {
@@ -176,37 +161,35 @@ extension TimeLineViewController: UITableViewDataSource {
         }
         
         
-        
-        circularImage(image: timerlineCell.profileImage)
+        circularImage(imageView: timerlineCell.profileImage)
         let data1 = NSData(contentsOf: NSURL(string: insta.profilePictureURL!)! as URL)
         timerlineCell.profileImage.image = UIImage(data: data1 as! Data)
-        
+        //timerlineCell.profileImage.loadImageUsingCacheWithUrlString(insta.profilePictureURL!)
         
         //get image from url
         // download image from firebase
         let data = NSData(contentsOf: NSURL(string: insta.postImageURL!)! as URL)
         timerlineCell.ContentImage.image = UIImage(data: data as! Data)
         
-        //  timerlineCell.ContentImage.image = UIImage(named: "pichu")
+        //timerlineCell.ContentImage.loadImageUsingCacheWithUrlString(insta.postImageURL!)
         
         // set timerline cell delegate
         timerlineCell.delegate = self
+        
         return timerlineCell
     }
     
-    func circularImage(image : UIImageView) {
-        image.layer.cornerRadius = image.frame.height/2
-        image.clipsToBounds = true
-        image.layer.borderWidth = 1
-        image.layer.borderColor = UIColor.black.cgColor
-        image.layer.shadowOpacity = 0.7
-        image.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
-        image.layer.shadowRadius = 5
-        image.layer.shadowColor = UIColor.black.cgColor
+    func circularImage(imageView : UIImageView) {
+        imageView.layer.cornerRadius = imageView.frame.height/2
+        imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.shadowOpacity = 0.7
+        imageView.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
+        imageView.layer.shadowRadius = 5
+        imageView.layer.shadowColor = UIColor.black.cgColor
     }
     
 }
-
-
 
 

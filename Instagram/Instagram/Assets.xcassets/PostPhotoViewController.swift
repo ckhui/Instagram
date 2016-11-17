@@ -11,27 +11,52 @@ import FirebaseAuth
 
 class PostPhotoViewController: UIViewController {
 
+    
+    @IBOutlet weak var choosePhotoButton: UIButton! { didSet{
+        choosePhotoButton.addTarget(self, action: #selector(onChoosePhotoButtonPressed(button:)), for: .touchUpInside)    }}
+    
+    @IBOutlet weak var imagePreview: UIImageView!
+    
+    @IBOutlet weak var postPhotoButton: UIButton! { didSet{
+        postPhotoButton.addTarget(self, action: #selector(onPostButtonPressed(button:)), for: .touchUpInside)    }}
+    
+    @IBOutlet weak var postDescTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func onPostButtonPressed(button: UIButton) {
+        let desc = postDescTextView.text
+        guard let image = imagePreview.image
+        else {
+            warningPopUp(withTitle: "No Image", withMessage: "choose image before post")
+            return
+        }
+        
+        Instagram().instagramActionPostInsta(desc: desc!, image: image)
+        warningPopUp(withTitle: "Post Success", withMessage: "Yeah")
     }
-    */
+    
+    func onChoosePhotoButtonPressed(button: UIButton) {
+        performSegue(withIdentifier: "postInstaToImagePicker", sender: self)
+    }
+
+
+       // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "postInstaToImagePicker" {
+            let vc : imagepickerViewController = segue.destination as! imagepickerViewController
+            if let pic = imagePreview.image
+            {
+                vc.currentImage = pic
+            }
+            vc.delegate = self
+        }
+    }
+    
 
     @IBAction func logoutTapped(_ sender: AnyObject) {
         let popUP = UIAlertController(title: "log out", message: "yer or no", preferredStyle: .alert)
@@ -56,5 +81,11 @@ class PostPhotoViewController: UIViewController {
     {
         let UserLogoutNotification = Notification (name: Notification.Name(rawValue: "UserLogoutNotification"), object: nil, userInfo: nil)
         NotificationCenter.default.post(UserLogoutNotification)
+    }
+}
+
+extension PostPhotoViewController : imagepickerViewControllerDelegate{
+    func imagepickerVCDidSelectPicture(selectedImage: UIImage) {
+        imagePreview.image = selectedImage
     }
 }

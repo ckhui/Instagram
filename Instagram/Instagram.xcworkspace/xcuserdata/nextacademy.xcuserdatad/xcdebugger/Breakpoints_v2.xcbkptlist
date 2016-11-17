@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Instagram/ProfileCollectionViewController.swift"
-            timestampString = "501070299.675438"
+            filePath = "Instagram/TimeLineViewController.swift"
+            timestampString = "501078464.29373"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "fetchUser()"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "fetchInsta()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

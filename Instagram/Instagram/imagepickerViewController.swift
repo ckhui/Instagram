@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol imagepickerViewControllerDelegate : class {
-    func didSelectPicture(selectedImage : UIImage)
+    func imagepickerVCDidSelectPicture(selectedImage : UIImage)
 }
 
 class imagepickerViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -21,11 +21,18 @@ class imagepickerViewController: UIViewController, UINavigationControllerDelegat
     
     let picker = UIImagePickerController()
     var  chosenImage : UIImage?
-    var currentImage = UIImage()
+    var currentImage : UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.image = currentImage
+        self.title = "ASDASDA"
+        if let image = currentImage{
+            imageView.image = image
+
+        }
+        else{
+            imageView.image = #imageLiteral(resourceName: "pichu")
+        }
         imageView.layer.borderWidth = 3.0
         imageView.layer.borderColor = UIColor.blue.cgColor
         
@@ -75,11 +82,12 @@ class imagepickerViewController: UIViewController, UINavigationControllerDelegat
         
         chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        let size = imageView.bounds.size
-        let image = cropToBounds(image: chosenImage!, width: size.width, height: size.height)
+        //let size = imageView.bounds.size
+        //let image = cropToBounds(image: chosenImage!, width: size.width, height: size.height)
         
         imageView.contentMode = .scaleAspectFit
-        imageView.image = image
+        //imageView.image = image
+        imageView.image = chosenImage
         
         dismiss(animated:true, completion: nil)
     }
@@ -90,7 +98,7 @@ class imagepickerViewController: UIViewController, UINavigationControllerDelegat
     
     @IBAction func onDoneSelectTapped(_ sender: AnyObject) {
         if let image = chosenImage{
-            delegate?.didSelectPicture(selectedImage: image)
+            delegate?.imagepickerVCDidSelectPicture(selectedImage: image)
         }
         
         dismiss(animated:true, completion: nil)

@@ -27,6 +27,7 @@
 		50FAFB7A1DDB143E0088D04C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FAFB791DDB143E0088D04C /* CommentTableViewCell.swift */; };
 		A1B4FDA21DDC0F2400CEDCEE /* Instagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B4FDA11DDC0F2400CEDCEE /* Instagram.swift */; };
 		A1B7ED0C1DDC4DD20033D893 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1B7ED0B1DDC4DD10033D893 /* GoogleService-Info.plist */; };
+		A1B7ED0E1DDC79270033D893 /* imagepickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B7ED0D1DDC79270033D893 /* imagepickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		753770BA11A488BE9C51CAD2 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		A1B4FDA11DDC0F2400CEDCEE /* Instagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instagram.swift; sourceTree = "<group>"; };
 		A1B7ED0B1DDC4DD10033D893 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A1B7ED0D1DDC79270033D893 /* imagepickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imagepickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				501895201DDAA509008C95DB /* TimeLineViewController.swift */,
 				50DFB97F1DDAB792009C4175 /* CommentViewController.swift */,
 				50DFB9811DDAC96D009C4175 /* SearchViewController.swift */,
+				A1B7ED0D1DDC79270033D893 /* imagepickerViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				505151911DDBF5A800BA90F6 /* ProfileCollectionViewController.swift in Sources */,
 				5051518D1DDBF5A800BA90F6 /* FollowingTableViewCell.swift in Sources */,
 				50DFB9801DDAB792009C4175 /* CommentViewController.swift in Sources */,
+				A1B7ED0E1DDC79270033D893 /* imagepickerViewController.swift in Sources */,
 				A1B4FDA21DDC0F2400CEDCEE /* Instagram.swift in Sources */,
 				501895211DDAA509008C95DB /* TimeLineViewController.swift in Sources */,
 				501895191DDA94CA008C95DB /* LoginViewController.swift in Sources */,

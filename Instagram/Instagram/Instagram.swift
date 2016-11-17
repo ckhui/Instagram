@@ -58,34 +58,40 @@ class Instagram {
         return dateFormatter.string(from: currentDate)
     }
     
-    func uploadImage(_ image: UIImage,forUser user: FIRUser? ,atPath path : String)
-    {
-        let frStorage = FIRStorage.storage().reference()
+    enum uploadImageType{
+        case profilePicture
+        case postInsta
+    }
+    
+    func uploadImageToStorageAndGetUrl(type : uploadImageType, image : UIImage,fileName : String?) -> String{
+        let str = ""
+        //get image data and metadata
+        //create image path
+        //sava image , return url
         
         guard let imageData = UIImageJPEGRepresentation(image, 0.5) else {
             UIViewController().warningPopUp(withTitle: "Image Type Error", withMessage: "Image Type Error")
-            return
+            return str
         }
-        
-        // Create a reference to the file you want to upload
-        //let riversRef = storageRef.child("images/rivers.jpg")
-        
         
         let newMetadata = FIRStorageMetadata()
         newMetadata.contentType = "image/jpeg"
         
-        var profilePath = "profilePict-demo.jpeg"
-        
-        // this is a sample to use USERID to name the uploaded image
-        if let firUser = user{
-            let userID = firUser.uid
-            profilePath = "profilePict/\(userID).jpeg"
+        var path = ""
+        switch type {
+        case .postInsta:
+            path = "/InstaPost/\(fileName).jpg"
+            break
+        case .profilePicture:
+            path = "/ProfilePicture/\(currentUserUid()).jpg"
+            break
         }
-        
-        var downloadURL : URL?
+    
+        var downloadURL : String?
         
         //upload image
-        frStorage.child(profilePath).put(imageData, metadata: newMetadata, completion: {
+        let frStorage = FIRStorage.storage().reference()
+        frStorage.child(path).put(imageData, metadata: newMetadata, completion: {
             (storageMeta, error) in
             if let uploadError = error
             {
@@ -96,19 +102,16 @@ class Instagram {
             }
             else {
                 // Metadata contains file metadata such as size, content-type, and download URL.
-                downloadURL = storageMeta!.downloadURL()
+                downloadURL = storageMeta!.downloadURL()?.absoluteString
             }
         })
         
-        //save url
+        guard let url = downloadURL
+        else {
+            return ""
+        }
+        return url
         
-        
-    }
-    
-    func uploadProfileImage ()
-    {
-        let image = UIImage(named: "UProfile")!
-        //uploadImage(image, of: nil)
     }
     
     func currentUserInfo(){
@@ -172,16 +175,6 @@ class Instagram {
         frDBref.child("\(path)/").child(item).removeValue()
     }
     
-    func preparePostInstaDictionary(desc : String = "" , imageUrl : String) -> [String : String]{
-        var dict = [String : String]()
-        dict["desc"] = desc
-        dict["url"] = imageUrl
-        dict["poster"] = currentUserUid()
-        dict["timestamp"] = String(Date().timeIntervalSince1970)
-        
-        return dict
-    }
-    
     func prepareCommentDictionary(comment : String) -> [String : String]{
         var dict = [String : String]()
         dict["str"] = comment
@@ -200,8 +193,50 @@ class Instagram {
         return dict
     }
     
+    func preparePostInstaDictionary(desc : String = "" , imageUrl : String) -> [String : String]{
+        var dict = [String : String]()
+        dict["desc"] = desc
+        dict["url"] = imageUrl
+        dict["poster"] = currentUserUid()
+        dict["timestamp"] = String(Date().timeIntervalSince1970)
+        
+        return dict
+    }
+    
+    func instagramActionPostInsta(desc : String = "", image :UIImage){
+        //1. get auto id in ImagePost
+        //2. upload to storage and get url
+        //3. desc, url -> dict
+        //4. upload database
+        //         --post
+        //         ImagePost/autoId +
+        //         desc : str
+        //         url : url
+        //         poster : useruid
+        //         timestamp : time
+        //
+        //        User/uid/posted/autoId + url
+        
+        //1
+        let ref = frDBref.child("ImagePost").childByAutoId()
+        ref.setValue("temp")
+        let imageUid = ref.key
+
+        //2. upload image with type postinsta and imagename = uid
+        let url = uploadImageToStorageAndGetUrl(type: .postInsta, image: image, fileName: imageUid)
+        
+        //3. desc, url -> dict
+        let dict = preparePostInstaDictionary(desc: desc, imageUrl: url)
+        
+        //4.
+        ref.setValue(dict)
+        let uid = currentUserUid()
+        let path = "User/\(uid)/posted/"
+        modifyDatabase(path: path, key: imageUid, value: url)
+    }
+    
+    
     enum actionType {
-        case postInsta
         case removeInsta
         case like
         case unlike
@@ -219,14 +254,8 @@ class Instagram {
         let username = getUserNameFromUid(uid: userUid)
         
         switch type {
-        case .postInsta :
-            path = "ImagePost/\(userUid)"
-            self.modifyDatabase(path: path, dictionary: dict)
-            break
             
         case .like :
-            //         --like
-            //         ImagePost/imageuid/likeby + currentUserUid
             path = "ImagePost/\(targetUid)/likeby"
             self.modifyDatabase(path: path, key: userUid, value: username)
             break
@@ -281,23 +310,8 @@ class Instagram {
             self.deleteFromDatabase(path: "Imagepost", item: target)
             self.deleteFromDatabase(path: "Comment", item: target)
             break
-            
-        default:
-            break
         }
         
-//         --post
-        //TODO :
-//         save image to storage
-        
-//         ImagePost/imageuid +
-//         desc : str
-//         url : url
-//         poster : useruid
-//         timestamp : time
-//
-//         User/uid/posted + imageuid
-//
 //         --like
 //         ImagePost/imageuid/likeby + currentUserUid
 //         

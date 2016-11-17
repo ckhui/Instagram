@@ -57,4 +57,19 @@ class PostPhotoViewController: UIViewController {
         let UserLogoutNotification = Notification (name: Notification.Name(rawValue: "UserLogoutNotification"), object: nil, userInfo: nil)
         NotificationCenter.default.post(UserLogoutNotification)
     }
+
+    @IBAction func showProfile(_ sender: Any) {
+        performSegue(withIdentifier: "showProfile", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showProfile"{
+            let VC = segue.destination as! ProfileCollectionViewController
+            VC.profilelUid = "Admin1"
+    }
+
+    }
 }
+
+

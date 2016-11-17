@@ -20,7 +20,6 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
     var frDBref : FIRDatabaseReference!
     var likeDBref : FIRDatabaseReference!
     var instras : [Insta] = []
-    var img :[String] = []
     var indexToSend = -1
     
     /*--------------------view Did Load--------------------*/
@@ -79,17 +78,12 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
             let posterID = instraDictionary["poster"] as? String
             let postImageURL = instraDictionary["url"] as? String
             let postDetail = instraDictionary["desc"] as? String
-            let postlike = instraDictionary["likeby"] as? [String:String]
             
             
             //newInsta.postTime = instraDictionary["timestamp"] as? String
             //newInsta.like = instraDictionary["likeby"] as? String
             //  postlike?.count
-            
-            
-            
-            
-            
+
             self.frDBref.child("User").child(posterID!).observe(.value, with: { (userSnapshot) in
                 guard let userDictionary = userSnapshot.value as? [String:AnyObject]
                     else {
@@ -101,8 +95,13 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
                 newInsta.postImageURL = postImageURL
                 newInsta.postDetail = postDetail
                 newInsta.username = userDictionary["name"] as! String?
-                newInsta.like = (postlike?.count)!
+                
+                if instraDictionary.index(forKey: "likeby") != nil {
+                    let postlike = instraDictionary["likeby"] as? [String :String]
+                    newInsta.like = (postlike?.count)!
+                }
                 newInsta.profilePictureURL = userDictionary["picture"] as! String?
+                
                 self.instras.append(newInsta)
                 self.timelineTableView.reloadData()
                 
@@ -110,23 +109,7 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
         })
     }
     
-    func fetchName() {
-        frDBref.child("User").observe(.childAdded, with: {(snapshot) in
-            let newUser = User()
-            guard let NameDictionary = snapshot.value  as? [String: AnyObject] else
-            {
-                return
-            }
-            
-            newUser.name = NameDictionary["name"] as? String
-            print(newUser.name)
-        })
-    }
-    
 }
-
-
-
 
 /*-------------Timeline Table Cell Delegate ---------*/
 extension TimeLineViewController: TimelineTableViewCellDelegate {
@@ -157,7 +140,7 @@ extension TimeLineViewController: UITableViewDataSource {
         let insta = instras[indexPath.row]
         
         
-        print(insta.posterID)
+        //print(insta.posterID)
         timerlineCell.usenameLabel.text = insta.username
         timerlineCell.ContextLabel.text =  insta.postDetail!
         //timerlineCell.TimeLabel.text = insta.postTime
@@ -175,34 +158,15 @@ extension TimeLineViewController: UITableViewDataSource {
             timerlineCell.likeLabel.text = "❤️ \(insta.like) likes"
         }
         
+        timerlineCell.profileImage.roundShape()
+        timerlineCell.profileImage.loadImageUsingCacheWithUrlString(insta.profilePictureURL!)
         
-        
-        circularImage(image: timerlineCell.profileImage)
-        let data1 = NSData(contentsOf: NSURL(string: insta.profilePictureURL!)! as URL)
-        timerlineCell.profileImage.image = UIImage(data: data1 as! Data)
-        
-        
-        //get image from url
-        // download image from firebase
-        let data = NSData(contentsOf: NSURL(string: insta.postImageURL!)! as URL)
-        timerlineCell.ContentImage.image = UIImage(data: data as! Data)
-        
-        //  timerlineCell.ContentImage.image = UIImage(named: "pichu")
+
+        timerlineCell.ContentImage.loadImageUsingCacheWithUrlString(insta.postImageURL!)
         
         // set timerline cell delegate
         timerlineCell.delegate = self
         return timerlineCell
-    }
-    
-    func circularImage(image : UIImageView) {
-        image.layer.cornerRadius = image.frame.height/2
-        image.clipsToBounds = true
-        image.layer.borderWidth = 1
-        image.layer.borderColor = UIColor.black.cgColor
-        image.layer.shadowOpacity = 0.7
-        image.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
-        image.layer.shadowRadius = 5
-        image.layer.shadowColor = UIColor.black.cgColor
     }
     
 }

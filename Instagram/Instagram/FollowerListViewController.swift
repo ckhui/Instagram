@@ -15,12 +15,10 @@ class FollowerListViewController: UIViewController {
     //input array of uid
     var uidArray = [String]()
     
-    
     var frDBref : FIRDatabaseReference!
     var followers : [Follower] = []
     var followingUid : [String] = []
-    let masteruid = "Admin2" //Instagram().currentUserUid()
-    
+    let masteruid = Instagram().currentUserUid()
     var index = -1
     
     @IBOutlet weak var userListTableView: UITableView!{
@@ -34,9 +32,6 @@ class FollowerListViewController: UIViewController {
         super.viewDidLoad()
         
         frDBref = FIRDatabase.database().reference()
-        uidArray.append("Admin1")
-        uidArray.append("Admin2")
-        
         loadUserList()
     }
     

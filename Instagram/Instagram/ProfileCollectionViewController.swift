@@ -20,9 +20,9 @@ class ProfileCollectionViewController: UICollectionViewController{
     var arrayOfPicturesUrl = [String]()
     var arrayOfFollowers = [String]()
     var arrayOfFollowings = [String]()
-    let tapGesture = UITapGestureRecognizer()
     var labelIsTapped = false
-    var userUID = "Admin2"//Instagram().currentUserUid()//"Admin1"
+    
+    var userUID = Instagram().currentUserUid()
     
     var profilelUid : String?
     
@@ -36,12 +36,6 @@ class ProfileCollectionViewController: UICollectionViewController{
         if let uid = profilelUid{
             userUID = uid
         }
-        else {
-            userUID = "Admin2"
-        }
-        
-        //add tap gesture to edit profile
-        tapGesture.addTarget(self, action: #selector(handleTap))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,11 +46,7 @@ class ProfileCollectionViewController: UICollectionViewController{
     
     //MARK: - fetch data
     func fetchUser() {
-        
-        
         ref.child("User").child(userUID).observeSingleEvent(of: .value, with: {(snapshot) in
-            
-            
             
             if let dictionary = snapshot.value as? [String:AnyObject] {
                 self.users.desc = (dictionary["desc"] as! String?)!
@@ -65,7 +55,6 @@ class ProfileCollectionViewController: UICollectionViewController{
                 if dictionary.index(forKey: "posted") != nil {
                     self.users.posted = (dictionary["posted"] as! [String : String]?)!
                 }
-                
                 
                 let imageurlArray = self.users.posted
                 for imageurl in imageurlArray {
@@ -134,38 +123,17 @@ class ProfileCollectionViewController: UICollectionViewController{
             cell.profileFullName.text = self.users.name
             cell.profileDescription.text = self.users.desc
             
-            
             //fonts layout
             cell.numberOfPosts.font = UIFont.boldSystemFont(ofSize: 16)
             cell.numberOfFollowers.font = UIFont.boldSystemFont(ofSize: 16)
             cell.numberOfFollowing.font = UIFont.boldSystemFont(ofSize: 16)
             
-            
-            //edit profile
-            cell.editProfileOnLabelPressed.addGestureRecognizer(tapGesture)
-            cell.editProfileOnLabelPressed.isUserInteractionEnabled = true
-            cell.editProfileOnLabelPressed.highlightedTextColor = UIColor.red
-            if labelIsTapped {
-                cell.editProfileOnLabelPressed.isHighlighted = true
-            } else {
-                cell.editProfileOnLabelPressed.isHighlighted = false
-            }
-            
-            //       view layout
-            //        cell.viewContainingButtons.layer.borderWidth = 0.5
-            //        let grayColor = UIColor(red: 128/255, green: 128/255 , blue: 128/255 , alpha: 1)
-            //        cell.viewContainingButtons.layer.borderColor = grayColor.cgColor
-            
-            
-            
-            //circular profile picture
+    
             if self.users.picture != "" {
                 cell.profilePicture.loadImageUsingCacheWithUrlString(self.users.picture)
-//                let imgdata = NSData(contentsOf: NSURL(string: self.users.picture)! as URL)
-//                let img = UIImage(data: imgdata as! Data)
-//                cell.profilePicture.image = img
                cell.profilePicture.roundShape()
             }
+            cell.delegate = self
             
             return cell
         } else {
@@ -175,7 +143,6 @@ class ProfileCollectionViewController: UICollectionViewController{
             
             if self.arrayOfPicturesUrl.count > 0 {
                 url = self.arrayOfPicturesUrl[indexPath.row - 1]
-                print("********** \(url)")
                 cell.profileImages.loadImageUsingCacheWithUrlString(url)
                 cell.profileImages.centerSquare()
             
@@ -184,29 +151,7 @@ class ProfileCollectionViewController: UICollectionViewController{
         }
     }
     
-    
-    
-    
-    //MARK: - label tap to edit function
-    func handleTap() {
-        print("tapped fool")
-        if labelIsTapped {
-            labelIsTapped = false
-            self.collectionView?.reloadData()
-        } else {
-            labelIsTapped = true
-            self.collectionView?.reloadData()
-            
-        }
-    }
-    
-    
 }
-
-
-
-
-
 
 //MARK: - modify cell layout
 extension ProfileCollectionViewController : UICollectionViewDelegateFlowLayout {
@@ -256,5 +201,41 @@ extension ProfileCollectionViewController : UICollectionViewDelegateFlowLayout {
  }
  */
 
-//TODO: Add segue to edit page
+
+extension ProfileCollectionViewController : ProfileCollectionViewCellDelegate{
+    func profileCellOnEditLabelPressed(cell: ProfileCollectionViewCell) {
+        performSegue(withIdentifier: "editProfileSegue", sender: self)
+    }
+    
+    func profileCellOnFollowerLabelPressed(cell: ProfileCollectionViewCell) {
+        performSegue(withIdentifier: "showFollower", sender: self)
+    }
+    
+    func profileCellOnFollowingLabelPressed(cell: ProfileCollectionViewCell) {
+        performSegue(withIdentifier: "showFollowing", sender: self)
+    }
+}
+
+extension ProfileCollectionViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showFollower") {
+            let destination = segue.destination as! FollowerListViewController
+            destination.uidArray = arrayOfFollowers
+            return
+        }
+        else if (segue.identifier == "showFollowing") {
+            let destination = segue.destination as! FollowerListViewController
+            destination.uidArray = arrayOfFollowings
+            return
+        }
+        else if (segue.identifier == "editProfileSegue") {
+            return
+        }
+        
+        
+        
+        
+        
+    }
+}
 

@@ -32,10 +32,9 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    
-    
+    var userUid = Instagram().currentUserUid()
     var users = User()
-//    var userUID = Instagram().currentUserUid()
+    
     var ref1:FIRDatabaseReference!
 
     override func viewDidLoad() {
@@ -57,14 +56,11 @@ class EditProfileViewController: UIViewController {
         fetchUserInfo()
         
     }
-    
-    
    
     //MARK: - Profile photo image set
     func fetchUserInfo() {
-        
-        
-        ref1.child("User").child("Admin1").observeSingleEvent(of: .value, with: {(snapshot) in
+    
+        ref1.child("User").child(userUid).observeSingleEvent(of: .value, with: {(snapshot) in
             
                 if let dictionary = snapshot.value as? [String:AnyObject] {
                     print("hello")
@@ -72,6 +68,7 @@ class EditProfileViewController: UIViewController {
                     self.users.name = (dictionary["name"] as! String?)!
                     self.users.picture = (dictionary["picture"] as! String?)!
                     self.profilePhotoImage.loadImageUsingCacheWithUrlString(self.users.picture)
+                    self.profilePhotoImage.roundShape()
                     self.fullNameTextField.text = self.users.name
                     self.bioTextField.text = self.users.desc
                 }
@@ -82,8 +79,6 @@ class EditProfileViewController: UIViewController {
     
     //MARK: - Finish Editing
     func didFinishEditing() {
-        print("waddup")
-        
         guard let fullname = self.fullNameTextField.text else{
             print("error")
             return
@@ -93,27 +88,15 @@ class EditProfileViewController: UIViewController {
             return
         }
         
-        
-        
         let dict = Instagram().prepareProfileDictionary(name: fullname , desc: descrip, imageUrl: self.users.picture)
 
-        Instagram().instagramAction(type: .editProfile, dict: dict, targetUid: "Admin1")
-        self.performSegue(withIdentifier: "profileSegue", sender: self)
+        Instagram().instagramAction(type: .editProfile, dict: dict, targetUid: userUid)
+        dismiss(animated: true, completion: nil)
     }
     
     func didCancelEditing(){
-        self.performSegue(withIdentifier: "profileSegue", sender: self)
+        dismiss(animated: true, completion: nil)
 
-    }
-    
-    
-    
-    
-    //MARK: - Prepare for segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "profileSegue" {
-            let controller : ProfileCollectionViewController = segue.destination as! ProfileCollectionViewController
-        }
     }
     
     

@@ -230,7 +230,7 @@
                     <connections>
                         <outlet property="timelineTableView" destination="uU6-gL-OBE" id="gsj-XW-9Om"/>
                         <segue destination="El6-4G-hDv" kind="show" identifier="commentSegue" id="qrf-vH-mZ3"/>
-                        <segue destination="h7g-sC-JzQ" kind="show" identifier="userNameToProfile" id="F46-Vh-4cS"/>
+                        <segue destination="h7g-sC-JzQ" kind="show" identifier="userNameToProfile" id="Uh8-og-P16"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTb-r4-8Ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -532,10 +532,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="followerCell" rowHeight="101" id="vJg-4a-kor" customClass="FollowerCell" customModule="Instagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="101"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vJg-4a-kor" id="sJP-Gb-LGC">
-                                            <frame key="frameInset" width="1000" height="100"/>
+                                            <frame key="frameInset" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VV5-Hs-MIf">
@@ -586,12 +586,12 @@
                     </view>
                     <connections>
                         <outlet property="userListTableView" destination="cg6-hz-jiM" id="Dfq-bY-8QM"/>
-                        <segue destination="h7g-sC-JzQ" kind="show" identifier="followerPageToProfilePage" id="LfH-ac-JSC"/>
+                        <segue destination="h7g-sC-JzQ" kind="show" identifier="followerPageToProfilePage" id="F6d-EB-GZm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eWH-Se-d4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4690" y="1337"/>
+            <point key="canvasLocation" x="5017" y="1315"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="C9Q-5v-uNl">
@@ -605,8 +605,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="8ny-ZN-wXC" kind="relationship" relationship="viewControllers" id="6fV-ks-zkn"/>
-                        <segue destination="1Op-XO-swC" kind="relationship" relationship="viewControllers" id="Sjk-cg-SSX"/>
-                        <segue destination="h7g-sC-JzQ" kind="relationship" relationship="viewControllers" id="5rY-Sz-BqE"/>
+                        <segue destination="OWB-xC-XYV" kind="relationship" relationship="viewControllers" id="Sjk-cg-SSX"/>
+                        <segue destination="7FO-im-oMe" kind="relationship" relationship="viewControllers" id="5rY-Sz-BqE"/>
                         <segue destination="hXV-KF-m5b" kind="relationship" relationship="viewControllers" id="dKP-Ik-yTX"/>
                         <segue destination="F9T-km-EhC" kind="relationship" relationship="viewControllers" id="1WD-Cp-iQc"/>
                     </connections>
@@ -615,7 +615,7 @@
             </objects>
             <point key="canvasLocation" x="3135" y="-1279"/>
         </scene>
-        <!--Item-->
+        <!--Notification View Controller-->
         <scene sceneID="HI1-rL-ncb">
             <objects>
                 <viewController storyboardIdentifier="NotificationViewController" id="1Op-XO-swC" customClass="NotificationViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
@@ -767,7 +767,7 @@
                             <constraint firstAttribute="trailing" secondItem="8Tc-eV-FhG" secondAttribute="trailing" id="xVM-he-9QY"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="FUf-00-NJR"/>
+                    <navigationItem key="navigationItem" id="JfH-IQ-oeL"/>
                     <connections>
                         <outlet property="followingButton" destination="XgM-Di-n3j" id="1NK-bG-fsC"/>
                         <outlet property="tableView" destination="bM0-MZ-a6X" id="22h-3Q-W3b"/>
@@ -776,9 +776,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIU-IB-DWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5492" y="-216.34182908545728"/>
+            <point key="canvasLocation" x="4689" y="430"/>
         </scene>
-        <!--Item-->
+        <!--Profile Collection View Controller-->
         <scene sceneID="qP3-sb-b3o">
             <objects>
                 <collectionViewController storyboardIdentifier="ProfileCollectionViewController" id="h7g-sC-JzQ" customClass="ProfileCollectionViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
@@ -893,9 +893,6 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUb-fB-weh">
                                                             <state key="normal" title="Button"/>
-                                                            <connections>
-                                                                <segue destination="ZJP-Z3-iH3" kind="show" identifier="temp" id="92e-ub-uZA"/>
-                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -972,14 +969,16 @@
                             <outlet property="delegate" destination="h7g-sC-JzQ" id="3ge-74-xd6"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Item" id="W73-YA-jVr"/>
+                    <navigationItem key="navigationItem" id="Zsg-8n-9sM"/>
                     <connections>
                         <segue destination="ZJP-Z3-iH3" kind="show" identifier="editProfileSegue" id="iMq-rw-HyK"/>
+                        <segue destination="xpv-Ne-YI8" kind="show" identifier="showFollower" id="NHh-Ou-KXt"/>
+                        <segue destination="xpv-Ne-YI8" kind="show" identifier="showFollowing" id="CpB-K2-4jT"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X57-XY-TMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5479" y="490"/>
+            <point key="canvasLocation" x="6009" y="401"/>
         </scene>
         <!--Item-->
         <scene sceneID="fy2-Xg-3GE">
@@ -1038,7 +1037,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MkN-RU-DSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4728.8000000000002" y="-158.77061469265368"/>
+            <point key="canvasLocation" x="3738" y="-93"/>
         </scene>
         <!--Item-->
         <scene sceneID="vIT-P0-eoB">
@@ -1157,12 +1156,11 @@
                         <outlet property="usernameTextField" destination="OTP-hG-FAY" id="0ZP-0E-7z0"/>
                         <outlet property="websiteImage" destination="sjR-Fi-epf" id="YuC-R7-uV1"/>
                         <outlet property="websiteTextField" destination="cPN-TM-ioY" id="uc7-5e-mNC"/>
-                        <segue destination="h7g-sC-JzQ" kind="show" identifier="profileSegue" id="R3V-ql-o9i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afy-Js-xF0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6482" y="490"/>
+            <point key="canvasLocation" x="7738" y="288"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="OY8-0W-11v">
@@ -1262,7 +1260,45 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5g-Dv-LQH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2989.5999999999999" y="-255.02248875562222"/>
+            <point key="canvasLocation" x="2990" y="-394"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="DOh-BD-RpN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7FO-im-oMe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="W73-YA-jVr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l2C-pQ-WyG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="h7g-sC-JzQ" kind="relationship" relationship="rootViewController" id="icE-6n-hVv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y5E-aq-krO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6010" y="-349"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="sK4-7l-dyH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OWB-xC-XYV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="FUf-00-NJR"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eke-Zq-M7V">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1Op-XO-swC" kind="relationship" relationship="rootViewController" id="UY5-bn-0tY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xNv-Zi-IID" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4689" y="-349"/>
         </scene>
     </scenes>
     <resources>
@@ -1272,8 +1308,8 @@
         <image name="share" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5rY-Sz-BqE"/>
         <segue reference="FQu-hB-GUS"/>
-        <segue reference="92e-ub-uZA"/>
+        <segue reference="F6d-EB-GZm"/>
+        <segue reference="CpB-K2-4jT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -32,6 +32,9 @@
 		A1B7ED0C1DDC4DD20033D893 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1B7ED0B1DDC4DD10033D893 /* GoogleService-Info.plist */; };
 		A1B7ED0E1DDC79270033D893 /* imagepickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B7ED0D1DDC79270033D893 /* imagepickerViewController.swift */; };
 		A1DFB2041DDDA5050027E435 /* GridLayoutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DFB2031DDDA5050027E435 /* GridLayoutCollectionViewCell.swift */; };
+		A1F1CE661DDEAB5200E84A44 /* FollowerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1CE651DDEAB5200E84A44 /* FollowerListViewController.swift */; };
+		A1F1CE6A1DDEABEE00E84A44 /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1CE691DDEABEE00E84A44 /* FollowerCell.swift */; };
+		A1F1CE6C1DDEB35700E84A44 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1CE6B1DDEB35700E84A44 /* Follower.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +67,9 @@
 		A1B7ED0B1DDC4DD10033D893 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1B7ED0D1DDC79270033D893 /* imagepickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imagepickerViewController.swift; sourceTree = "<group>"; };
 		A1DFB2031DDDA5050027E435 /* GridLayoutCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayoutCollectionViewCell.swift; sourceTree = "<group>"; };
+		A1F1CE651DDEAB5200E84A44 /* FollowerListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerListViewController.swift; sourceTree = "<group>"; };
+		A1F1CE691DDEABEE00E84A44 /* FollowerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
+		A1F1CE6B1DDEB35700E84A44 /* Follower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,7 @@
 		5018951B1DDA9501008C95DB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A1F1CE651DDEAB5200E84A44 /* FollowerListViewController.swift */,
 				501895181DDA94CA008C95DB /* LoginViewController.swift */,
 				5018951E1DDA9595008C95DB /* SignUpViewController.swift */,
 				5051518A1DDBF5A800BA90F6 /* NotificationViewController.swift */,
@@ -131,6 +138,7 @@
 		5018951C1DDA9518008C95DB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1F1CE691DDEABEE00E84A44 /* FollowerCell.swift */,
 				501895221DDAAF49008C95DB /* TimelineTableViewCell.swift */,
 				50FAFB791DDB143E0088D04C /* CommentTableViewCell.swift */,
 				505151881DDBF5A800BA90F6 /* FollowingTableViewCell.swift */,
@@ -147,6 +155,7 @@
 			children = (
 				505151961DDC10F800BA90F6 /* Insta.swift */,
 				505151981DDD3C3100BA90F6 /* User.swift */,
+				A1F1CE6B1DDEB35700E84A44 /* Follower.swift */,
 				A1B4FDA11DDC0F2400CEDCEE /* Instagram.swift */,
 			);
 			name = Model;
@@ -299,6 +308,7 @@
 				50DFB9821DDAC96D009C4175 /* SearchViewController.swift in Sources */,
 				5051518E1DDBF5A800BA90F6 /* NotifcationTableViewCell.swift in Sources */,
 				5018951F1DDA9595008C95DB /* SignUpViewController.swift in Sources */,
+				A1F1CE6C1DDEB35700E84A44 /* Follower.swift in Sources */,
 				505151971DDC10F800BA90F6 /* Insta.swift in Sources */,
 				505151931DDBF66800BA90F6 /* PostPhotoViewController.swift in Sources */,
 				505151991DDD3C3100BA90F6 /* User.swift in Sources */,
@@ -307,8 +317,10 @@
 				5051518D1DDBF5A800BA90F6 /* FollowingTableViewCell.swift in Sources */,
 				505151951DDC043100BA90F6 /* SearchTableViewCell.swift in Sources */,
 				50DFB9801DDAB792009C4175 /* CommentViewController.swift in Sources */,
+				A1F1CE661DDEAB5200E84A44 /* FollowerListViewController.swift in Sources */,
 				A1B7ED0E1DDC79270033D893 /* imagepickerViewController.swift in Sources */,
 				A1B4FDA21DDC0F2400CEDCEE /* Instagram.swift in Sources */,
+				A1F1CE6A1DDEABEE00E84A44 /* FollowerCell.swift in Sources */,
 				501895211DDAA509008C95DB /* TimeLineViewController.swift in Sources */,
 				501895191DDA94CA008C95DB /* LoginViewController.swift in Sources */,
 				505151901DDBF5A800BA90F6 /* ProfileCollectionViewCell.swift in Sources */,

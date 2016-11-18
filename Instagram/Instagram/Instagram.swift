@@ -151,16 +151,30 @@ class Instagram {
         }
         return user.uid
     }
-    
-    
+//    
+//    func checkIfUserExists(uid: String, completion: @escaping (String) -> ()) -> String {
+//        frDBref.child("User/\(uid)/name").observeSingleEvent(of: .value, with: { (snapshot) in
+//            
+//            print("1111")
+//            let value = snapshot.value as? String
+//            if let name = value{
+//                completion(name)
+//            }else{
+//                completion("")
+//            }
+//        })
+//    }
+//    
     func getUserNameFromUid(uid : String) -> String{
-        var name = ""
+        var name = "Fixname"
+
         frDBref.child("User/\(uid)/name").observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            name = value?["name"] as! String
-            
+            name = snapshot.value as! String
+
         })
+
         return name
+        
     }
     
     func modifyDatabase(path: String,key: String,value: String){
@@ -263,17 +277,17 @@ class Instagram {
         switch type {
             
         case .like :
-            path = "ImagePost/\(targetUid)/likeby"
+            path = "ImagePost/\(targetUid!)/likeby"
             self.modifyDatabase(path: path, key: userUid, value: username)
             break
             
         case .unlike :
-            path = "ImagePost/\(targetUid)/likeby"
+            path = "ImagePost/\(targetUid!)/likeby"
             self.deleteFromDatabase(path: path, item: userUid)
             break
             
         case .comment :
-            path = "Comments/\(targetUid)"
+            path = "Comments/\(targetUid!)"
             self.modifyDatabase(path: path, dictionary: dict, autoId: true)
             break
             
@@ -285,7 +299,7 @@ class Instagram {
             let targetName = getUserNameFromUid(uid: target)
             path = "Following/\(userUid)/"
             self.modifyDatabase(path: path, key: target, value: targetName)
-            path = "Follower/\(targetUid)"
+            path = "Follower/\(target)"
             self.modifyDatabase(path: path, key: userUid, value: username)
             break
             
@@ -296,7 +310,7 @@ class Instagram {
             }
             path = "Following/\(userUid)/"
             self.deleteFromDatabase(path: path, item: target)
-            path = "Follower/\(targetUid)"
+            path = "Follower/\(target)"
             self.deleteFromDatabase(path: path, item: userUid)
             break
             
@@ -417,5 +431,23 @@ extension UIImageView {
     func centerSquare(){
         self.clipsToBounds = true
         self.contentMode = .scaleAspectFill
+    }
+}
+
+extension UIButton {
+    func setFollow(){
+        self.setTitle("Follow", for: .normal)
+        self.setTitleColor(UIColor.white, for: .normal)
+        self.backgroundColor = UIColor.blue
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.blue.cgColor
+    }
+    
+    func setFollowing(){
+        self.setTitle("Following", for: .normal)
+        self.setTitleColor(UIColor.black, for: .normal)
+        self.backgroundColor = UIColor.white
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.gray.cgColor
     }
 }

@@ -21,6 +21,7 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
     var likeDBref : FIRDatabaseReference!
     var instras : [Insta] = []
     var indexToSend = -1
+    let currentUserUid = Instagram().currentUserUid()
     
     /*--------------------view Did Load--------------------*/
     override func viewDidLoad() {
@@ -34,6 +35,7 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
         frDBref = FIRDatabase.database().reference()
         likeDBref = FIRDatabase.database().reference()
         
+        
         fetchInsta()
         
         // table view UI setting
@@ -43,21 +45,28 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
         
     }
     
-    
+    func fetcingData(completion:(_ :Bool)->()){
+        
+    }
     
     
     /*----------------- Prepare Segue --------------------*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        print ("goto \(segue.identifier)")
         if (segue.identifier == "commentSegue") {
             let destination = segue.destination as! CommentViewController
             destination.insta = instras[indexToSend]
-            
         }
+        else if (segue.identifier == "userNameToProfile") {
+            let destination = segue.destination as! ProfileCollectionViewController
+            destination.profilelUid = instras[indexToSend].posterID
+        }
+        
+        
     }
-    
-    
+
     /*----------------- Fetch the data --------------------*/
     func fetchInsta() {
         
@@ -98,7 +107,14 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
                 
                 if instraDictionary.index(forKey: "likeby") != nil {
                     let postlike = instraDictionary["likeby"] as? [String :String]
-                    newInsta.like = (postlike?.count)!
+                    for liker in (postlike?.keys)!{
+                        newInsta.like.append(liker)
+                    }
+                    
+                    if newInsta.like.index(of: self.currentUserUid) != nil{
+                        newInsta.isLiked = true
+                    }
+                    
                 }
                 newInsta.profilePictureURL = userDictionary["picture"] as! String?
                 
@@ -109,19 +125,6 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
         })
     }
     
-}
-
-/*-------------Timeline Table Cell Delegate ---------*/
-extension TimeLineViewController: TimelineTableViewCellDelegate {
-    func timelineCellOnCommentPressed(cell: TimelineTableViewCell) {
-        guard let indexPath = timelineTableView.indexPath(for: cell)
-            else{
-                return
-        }
-        indexToSend = indexPath.row
-        
-        self.performSegue(withIdentifier: "commentSegue", sender: self)
-    }
 }
 
 /*-------------Table View Data Source---------------*/
@@ -146,31 +149,92 @@ extension TimeLineViewController: UITableViewDataSource {
         //timerlineCell.TimeLabel.text = insta.postTime
         timerlineCell.commentLabel.text = "view 13 commments"
         
-        if (insta.like == 0) {
+        let likeCount = insta.like.count
+        if (likeCount == 0) {
             timerlineCell.likeLabel.isHidden = true
         }
-        else if (insta.like == 1) {
+        else if (likeCount == 1) {
             timerlineCell.likeLabel.isHidden = false
-            timerlineCell.likeLabel.text = "❤️ \(insta.like) like"
+            timerlineCell.likeLabel.text = "❤️ \(likeCount) like"
             
         } else {
             timerlineCell.likeLabel.isHidden = false
-            timerlineCell.likeLabel.text = "❤️ \(insta.like) likes"
+            timerlineCell.likeLabel.text = "❤️ \(likeCount) likes"
+        }
+        
+        if insta.isLiked {
+            timerlineCell.likeButton.setImage(#imageLiteral(resourceName: "redheart"), for: .normal)
+        }
+        else{
+            timerlineCell.likeButton.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
         }
         
         timerlineCell.profileImage.roundShape()
         timerlineCell.profileImage.loadImageUsingCacheWithUrlString(insta.profilePictureURL!)
-        
-
+    
         timerlineCell.ContentImage.loadImageUsingCacheWithUrlString(insta.postImageURL!)
         
         // set timerline cell delegate
+        timerlineCell.selectionStyle = UITableViewCellSelectionStyle.none
         timerlineCell.delegate = self
         return timerlineCell
     }
     
 }
 
+
+/*-------------Timeline Table Cell Delegate ---------*/
+extension TimeLineViewController: TimelineTableViewCellDelegate {
+    func timelineCellOnCommentPressed(cell: TimelineTableViewCell) {
+        guard let indexPath = timelineTableView.indexPath(for: cell)
+            else{
+                return
+        }
+        indexToSend = indexPath.row
+        
+        self.performSegue(withIdentifier: "commentSegue", sender: self)
+    }
+    
+    func timelineCellOnLikeButtonPressed(cell: TimelineTableViewCell) {
+        guard let indexPath = timelineTableView.indexPath(for: cell)
+            else{
+                return
+        }
+        
+        let clickedPost = instras[indexPath.row]
+        clickedPost.isLiked = !(clickedPost.isLiked)
+        
+        
+        if clickedPost.isLiked {
+            //+like
+            clickedPost.like.append(currentUserUid)
+            Instagram().instagramAction(type: .like, targetUid: clickedPost.imageUid)
+        }
+        else{
+            //-like
+            if let index = clickedPost.like.index(of: currentUserUid){
+                clickedPost.like.remove(at: index)
+            }
+            Instagram().instagramAction(type: .unlike, targetUid: clickedPost.imageUid)
+        }
+        
+        // TODO : fix auto scroll to top after reload
+        timelineTableView.reloadRows(at: [indexPath], with: .none)
+
+    }
+    
+    func timelineCellOnNameLabelPressed(cell: TimelineTableViewCell) {
+        //segue to profile page
+        guard let indexPath = timelineTableView.indexPath(for: cell)
+            else{
+                return
+        }
+        indexToSend = indexPath.row
+        
+        self.performSegue(withIdentifier: "userNameToProfile", sender: self)
+        
+    }
+}
 
 
 

@@ -15,8 +15,10 @@ class Insta {
     var postDetail : String? = nil
     var postTime : String? = nil
     
+    //had the current user ald like?
+    var isLiked : Bool = false
     // TODO : save liker name
-    var like : Int = 0
+    var like : [String] = []
     var comment : Int = 0
     var username : String? = nil
     var profilePictureURL : String? = nil

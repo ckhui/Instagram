@@ -13,11 +13,8 @@ class TimelineTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var ContextLabel: UILabel!
     @IBOutlet weak var TimeLabel: UILabel!
-  
     @IBOutlet weak var commentLabel: UILabel!
-    
     @IBOutlet weak var profileImage: UIImageView!
-   
     @IBOutlet weak var usenameLabel: UILabel!
     
     // Declare TimelineTableView Cell Delegate
@@ -32,7 +29,7 @@ class TimelineTableViewCell: UITableViewCell {
     }
     
     func onLikeButtonPressed(button: UIButton) {
-        
+        delegate?.timelineCellOnLikeButtonPressed(cell: self)
     }
 /*------------------Comment Button-------------*/
     @IBOutlet weak var commentButton: UIButton! {
@@ -60,20 +57,22 @@ class TimelineTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-       
         commentLabel.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target:self,action:#selector(self.onCommentLabelPressed(sender:)))
-        commentLabel.addGestureRecognizer(tap)
-    }
-   
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        let tapComment = UITapGestureRecognizer(target:self,action:#selector(self.onCommentLabelPressed(sender:)))
+        commentLabel.addGestureRecognizer(tapComment)
+        
+        usenameLabel.isUserInteractionEnabled = true
+        let tapName = UITapGestureRecognizer(target:self,action:#selector(self.onUsenameLabelPressed(sender:)))
+        usenameLabel.addGestureRecognizer(tapName)
 
-        // Configure the view for the selected state
     }
     
     func onCommentLabelPressed(sender: UITapGestureRecognizer){
         delegate?.timelineCellOnCommentPressed(cell: self)
+    }
+    
+    func onUsenameLabelPressed(sender: UITapGestureRecognizer){
+        delegate?.timelineCellOnNameLabelPressed(cell: self)
     }
 
 }
@@ -81,7 +80,11 @@ class TimelineTableViewCell: UITableViewCell {
 //TimelineTableView Cell Delegate
 protocol TimelineTableViewCellDelegate {
     
+    func timelineCellOnNameLabelPressed(cell : TimelineTableViewCell)
     func timelineCellOnCommentPressed(cell : TimelineTableViewCell)
+    func timelineCellOnLikeButtonPressed(cell : TimelineTableViewCell)
+
+    
 }
 
 

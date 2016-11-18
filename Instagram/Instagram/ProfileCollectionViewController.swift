@@ -249,12 +249,12 @@ extension ProfileCollectionViewController : UICollectionViewDelegateFlowLayout {
 
 // MARK: UICollectionViewDelegate
 
-
-
 /*
  // Uncomment this method to specify if the specified item should be selected
  override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
  return true
  }
  */
+
+//TODO: Add segue to edit page
 

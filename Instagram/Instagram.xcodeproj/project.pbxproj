@@ -35,6 +35,7 @@
 		A1F1CE661DDEAB5200E84A44 /* FollowerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1CE651DDEAB5200E84A44 /* FollowerListViewController.swift */; };
 		A1F1CE6A1DDEABEE00E84A44 /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1CE691DDEABEE00E84A44 /* FollowerCell.swift */; };
 		A1F1CE6C1DDEB35700E84A44 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1CE6B1DDEB35700E84A44 /* Follower.swift */; };
+		A1F1CE6E1DDEFC2E00E84A44 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1CE6D1DDEFC2E00E84A44 /* EditProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		A1F1CE651DDEAB5200E84A44 /* FollowerListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerListViewController.swift; sourceTree = "<group>"; };
 		A1F1CE691DDEABEE00E84A44 /* FollowerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
 		A1F1CE6B1DDEB35700E84A44 /* Follower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
+		A1F1CE6D1DDEFC2E00E84A44 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		5018951B1DDA9501008C95DB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A1F1CE6D1DDEFC2E00E84A44 /* EditProfileViewController.swift */,
 				A1F1CE651DDEAB5200E84A44 /* FollowerListViewController.swift */,
 				501895181DDA94CA008C95DB /* LoginViewController.swift */,
 				5018951E1DDA9595008C95DB /* SignUpViewController.swift */,
@@ -310,6 +313,7 @@
 				5018951F1DDA9595008C95DB /* SignUpViewController.swift in Sources */,
 				A1F1CE6C1DDEB35700E84A44 /* Follower.swift in Sources */,
 				505151971DDC10F800BA90F6 /* Insta.swift in Sources */,
+				A1F1CE6E1DDEFC2E00E84A44 /* EditProfileViewController.swift in Sources */,
 				505151931DDBF66800BA90F6 /* PostPhotoViewController.swift in Sources */,
 				505151991DDD3C3100BA90F6 /* User.swift in Sources */,
 				50FAFB7A1DDB143E0088D04C /* CommentTableViewCell.swift in Sources */,

@@ -9,7 +9,7 @@
 import Foundation
 
 class User {
-    
+    var userID : String? = ""
     var name: String? = ""
     var desc: String? = ""
     var picture: String = ""

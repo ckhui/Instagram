@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xpv-Ne-YI8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cW1-BM-eQi">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -547,7 +547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hD6-MT-x3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3104.8000000000002" y="-157.87106446776613"/>
+            <point key="canvasLocation" x="2985" y="-394"/>
         </scene>
         <!--Imagepicker View Controller-->
         <scene sceneID="fMY-kj-4GW">
@@ -681,11 +681,12 @@
                     </view>
                     <connections>
                         <outlet property="userListTableView" destination="cg6-hz-jiM" id="Dfq-bY-8QM"/>
+                        <segue destination="h7g-sC-JzQ" kind="show" identifier="followerPageToProfilePage" id="LfH-ac-JSC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eWH-Se-d4y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4231" y="723"/>
+            <point key="canvasLocation" x="4690" y="1337"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="C9Q-5v-uNl">
@@ -1067,7 +1068,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X57-XY-TMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5400.8000000000002" y="-158.77061469265368"/>
+            <point key="canvasLocation" x="5479" y="490"/>
         </scene>
         <!--Item-->
         <scene sceneID="fy2-Xg-3GE">
@@ -1126,7 +1127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MkN-RU-DSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3791.1999999999998" y="-159.67016491754123"/>
+            <point key="canvasLocation" x="3790" y="-158"/>
         </scene>
         <!--Item-->
         <scene sceneID="vIT-P0-eoB">
@@ -1155,7 +1156,7 @@
         <image name="share" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5rY-Sz-BqE"/>
+        <segue reference="LfH-ac-JSC"/>
         <segue reference="FQu-hB-GUS"/>
     </inferredMetricsTieBreakers>
 </document>

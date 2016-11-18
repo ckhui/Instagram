@@ -21,6 +21,8 @@ class FollowerListViewController: UIViewController {
     var followingUid : [String] = []
     let masteruid = "Admin2" //Instagram().currentUserUid()
     
+    var index = -1
+    
     @IBOutlet weak var userListTableView: UITableView!{
         didSet{
             userListTableView.delegate = self
@@ -97,7 +99,10 @@ class FollowerListViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if (segue.identifier == "followerPageToProfilePage") {
+            let destination = segue.destination as! ProfileCollectionViewController
+            destination.profilelUid = followers[index].uid
+        }
     }
     
     
@@ -127,6 +132,12 @@ extension FollowerListViewController : UITableViewDataSource, UITableViewDelegat
         cell.delegate = self
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        index = indexPath.row
+        self.performSegue(withIdentifier: "followerPageToProfilePage", sender: self)
+        
     }
 }
 

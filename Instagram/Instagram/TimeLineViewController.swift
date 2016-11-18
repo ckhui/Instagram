@@ -53,8 +53,6 @@ class TimeLineViewController: UIViewController, UITableViewDelegate {
     /*----------------- Prepare Segue --------------------*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        print ("goto \(segue.identifier)")
         if (segue.identifier == "commentSegue") {
             let destination = segue.destination as! CommentViewController
             destination.insta = instras[indexToSend]

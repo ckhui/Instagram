@@ -11,12 +11,13 @@ import Firebase
 import FirebaseDatabase
 
 class SearchViewController: UIViewController {
-   
+    
     let searchController = UISearchController(searchResultsController: nil)
     // @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchTableView: UITableView!
     var frDBref : FIRDatabaseReference!
     var users : [User] = []
+    var filterUsers : [User] = []
     
     
     override func viewDidLoad() {
@@ -30,55 +31,72 @@ class SearchViewController: UIViewController {
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
+        searchController.definesPresentationContext = true
         definesPresentationContext = true
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
-        searchTableView.tableHeaderView = searchController.searchBar
         
+        //searchTableView.tableHeaderView = searchController.searchBar
+        navigationItem.titleView = searchController.searchBar
         
         // table view UI setting
         searchTableView.tableFooterView = UIView()
         searchTableView.rowHeight = UITableViewAutomaticDimension
         searchTableView.estimatedRowHeight = 99.0
         
-
-        
+        self.fetchUser()
     }
+    
     func filterContentForSearchText(searchText: String)
     {
-        users = []
+        
+        filterUsers = []
+        
+        if searchText == ""{
+            filterUsers = users
+        }
+        else{
+            filterUsers = users.filter { user in
+                return (user.name?.lowercased().contains(searchText.lowercased()))!
+            }
+        }
         self.searchTableView.reloadData()
         
-        //    var textFieldContent : String?
-        //  textFieldContent = textField.text
+    }
+    
+    func fetchUser() {
         
         
-        
-        frDBref.child("User").queryOrdered(byChild: "name").queryEqual(toValue: searchText).observe(.childAdded, with: {(snapshot) in
+        frDBref.child("User").observe(.childAdded, with: {(snapshot) in
             let newUser = User()
-            
             guard let userID = snapshot.key as? String else{
                 return
             }
             guard let UserDictionary = snapshot.value as? [String : AnyObject] else {
                 return
             }
-            print(snapshot)
             
             let uid  = userID
             let userName =  UserDictionary["name"] as? String
             let profilePictureURL = UserDictionary["picture"] as? String
+            let desc = UserDictionary["desc"] as? String
             
-            newUser.userID = uid
-            newUser.name = userName
-            newUser.picture = profilePictureURL!
+            let currentUid : String = Instagram().currentUserUid()
             
-            self.users.append(newUser)
-            self.searchTableView.reloadData()
+            if (currentUid != uid) {
+                newUser.userID = uid
+                newUser.name = userName
+                newUser.picture = profilePictureURL!
+                newUser.desc = desc
+                
+                self.users.append(newUser)
+                
+            }
             
         })
         
-        
     }
+    
     
 }
 //TableView Delegate
@@ -88,11 +106,14 @@ extension SearchViewController: UITableViewDelegate {
     }
 }
 
+
+
+
 /*-------------------------------------------------------*/
 //TableView DataSource
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return filterUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,14 +122,25 @@ extension SearchViewController: UITableViewDataSource {
         }
         
         
-        let user = users[indexPath.row]
+        let user: User
+        if searchController.isActive && searchController.searchBar.text != ""
+        {
+            user = filterUsers[indexPath.row]
+        }
+        else
+        {
+            user = users[indexPath.row]
+        }
+        
         cell.userNameLabel.text =  user.name
+        cell.descLabel.text = user.desc
         cell.profilePicture.loadImageUsingCacheWithUrlString(user.picture)
-
-      return cell
+        cell.profilePicture.roundShape()
+        
+        return cell
     }
+    
 }
-
 
 extension SearchViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar)

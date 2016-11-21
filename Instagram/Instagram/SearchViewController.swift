@@ -121,7 +121,6 @@ extension SearchViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        
         let user: User
         if searchController.isActive && searchController.searchBar.text != ""
         {
@@ -134,7 +133,14 @@ extension SearchViewController: UITableViewDataSource {
         
         cell.userNameLabel.text =  user.name
         cell.descLabel.text = user.desc
-        cell.profilePicture.loadImageUsingCacheWithUrlString(user.picture)
+        if (user.picture == "") {
+            cell.profilePicture.image = #imageLiteral(resourceName: "jigglypuff")
+        }
+        else {
+            cell.profilePicture.loadImageUsingCacheWithUrlString(user.picture)
+        }
+        
+        
         cell.profilePicture.roundShape()
         
         return cell
